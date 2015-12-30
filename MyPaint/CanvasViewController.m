@@ -246,16 +246,6 @@
         CGPoint translation = [panGesture translationInView:self.view];
         NSLog(@"translation,%@", NSStringFromCGPoint(translation));
         
-        //CGPoint locationOnCurrentView = [panGesture locationInView:self.currentView];
-        //CGPoint touchOffSet = CGPointMake(CGRectGetMidX(self.currentView.bounds)-locationOnCurrentView.x, CGRectGetMidY(self.currentView.bounds)-locationOnCurrentView.x);
-        
-        //CGPoint correction = CGPointMake(location.x+touchOffSet.x, location.y+touchOffSet.y);
-        //self.currentView.center=correction;
-        
-        //panGesture.view.center = CGPointMake(panGesture.view.center.x+transition.x, panGesture.view.center.y+transition.y);
-        
-        
-        //CORRET
         
         
         self.currentView.center = CGPointMake(self.currentView.center.x+translation.x,
