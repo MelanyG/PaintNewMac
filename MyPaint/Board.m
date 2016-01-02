@@ -15,6 +15,7 @@
 @property(nonatomic, strong) FigureViewController* Figure;
 @property(nonatomic, strong) ColorPanelController* Colors;
 @property(nonatomic, strong) CanvasViewController* Canvas;
+@property(nonatomic, strong) SaveLoadPanelViewController* SaveLoad;
 
 @end
 
@@ -43,9 +44,14 @@
     {
         self.Colors = (ColorPanelController *)[segue destinationViewController];
     }
+    else if ([segue.identifier isEqualToString:@"SaveLoadSegue"])
+    {
+    self.SaveLoad = (SaveLoadPanelViewController *)[segue destinationViewController];
+    }
     
     self.Figure.delegate = self.Canvas;
     self.Colors.delegate = self.Canvas;
+    self.SaveLoad.delegate = self.Canvas;
 }
 
 

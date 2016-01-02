@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "FigureViewController.h"
 #import "ColorPanelController.h"
-//#import "CanvasViewController.h"
+#import "SaveLoadPanelViewController.h"
+
 
 @protocol FigureDelegate;
 @protocol ColorDelegate;
@@ -20,7 +21,7 @@
 
 @end
 
-@protocol FigureDelegate<NSObject>
+@protocol FigureDelegate <NSObject>
 
 @required
 
@@ -30,7 +31,7 @@
 
 @end
 
-@protocol ColorDelegate<NSObject>
+@protocol ColorDelegate <NSObject>
 
 @required
 
@@ -42,6 +43,17 @@
 -(void) didSelectDelete;
 
 @end
+
+@protocol SaveLoadDelegate <NSObject>
+
+@required
+
+-(void) didSelectSaveButton: (NSInteger)tag;
+-(void) didSelectLoadButton: (NSInteger) tag;
+
+@end
+
+
 
 
 

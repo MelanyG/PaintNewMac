@@ -51,6 +51,7 @@
 		4084E5701C32D33300D84AD7 /* Trapeze.png in Resources */ = {isa = PBXBuildFile; fileRef = 4084E56F1C32D33300D84AD7 /* Trapeze.png */; };
 		4084E5721C32D33A00D84AD7 /* Line.png in Resources */ = {isa = PBXBuildFile; fileRef = 4084E5711C32D33A00D84AD7 /* Line.png */; };
 		4084E5741C34216A00D84AD7 /* forPaint.png in Resources */ = {isa = PBXBuildFile; fileRef = 4084E5731C34216A00D84AD7 /* forPaint.png */; };
+		4084E5771C3550C700D84AD7 /* SaveLoadPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4084E5761C3550C700D84AD7 /* SaveLoadPanelViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +121,8 @@
 		4084E56F1C32D33300D84AD7 /* Trapeze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Trapeze.png; sourceTree = "<group>"; };
 		4084E5711C32D33A00D84AD7 /* Line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Line.png; sourceTree = "<group>"; };
 		4084E5731C34216A00D84AD7 /* forPaint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forPaint.png; sourceTree = "<group>"; };
+		4084E5751C3550C700D84AD7 /* SaveLoadPanelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveLoadPanelViewController.h; sourceTree = "<group>"; };
+		4084E5761C3550C700D84AD7 /* SaveLoadPanelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveLoadPanelViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +208,8 @@
 		369B19411C24374100027889 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				4084E5751C3550C700D84AD7 /* SaveLoadPanelViewController.h */,
+				4084E5761C3550C700D84AD7 /* SaveLoadPanelViewController.m */,
 				36203C961C2C5D3800E21A3C /* SettingsForColor.m */,
 				36203C951C2C5D3800E21A3C /* SettingsForColor.h */,
 				369B19421C2437FF00027889 /* CanvasViewController.h */,
@@ -393,6 +398,7 @@
 				366C72961C22D0DC006076A5 /* Board.m in Sources */,
 				366C72931C22D0DC006076A5 /* AppDelegate.m in Sources */,
 				369B193A1C242E1700027889 /* ViewControllerMain.m in Sources */,
+				4084E5771C3550C700D84AD7 /* SaveLoadPanelViewController.m in Sources */,
 				36203C971C2C5D3800E21A3C /* SettingsForColor.m in Sources */,
 				369B19441C2437FF00027889 /* CanvasViewController.m in Sources */,
 				369B193D1C2433DF00027889 /* ColorPanelController.m in Sources */,

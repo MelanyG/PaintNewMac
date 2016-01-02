@@ -44,6 +44,7 @@ typedef enum shapeTypes
                 selectedImage: (UIImage*) image
 {
     self = [super initWithFrame:frame];
+    
     if (self)
     {
         self.backgroundColor = [UIColor clearColor];
@@ -282,6 +283,60 @@ typedef enum shapeTypes
 {
 
     [image drawInRect:rect];
+    NSLog(@"draw image%@", NSStringFromCGRect(self.frame));
 }
+
+#pragma mark - NSCoding
+
+#define kStartPointKey           @"StartPoint"
+#define kEndPointKey             @"EndPoint"
+#define kShapeKey                @"Shape"
+#define kColorKey                @"Color"
+#define kWidthKey                @"Width"
+#define kImageKey                @"Image"
+#define kFrameKey                @"Frame"
+#define kBackgroundColorKey                @"BackgroundColor"
+
+- (void) encodeWithCoder:(NSCoder *)encoder
+{
+    NSValue *StartPoint = [NSValue valueWithCGPoint:self.startPoint];
+    NSValue *EndPoint = [NSValue valueWithCGPoint:self.endPoint];
+    NSValue *Frame = [NSValue valueWithCGRect:self.frame];
+    
+    
+    [encoder encodeObject:StartPoint forKey:kStartPointKey];
+    [encoder encodeObject:EndPoint forKey:kEndPointKey];
+    [encoder encodeInt:self.shape forKey:kShapeKey];
+    [encoder encodeObject:self.color forKey:kColorKey];
+    [encoder encodeFloat:self.width forKey:kWidthKey];
+    [encoder encodeObject:self.image forKey:kImageKey];
+    [encoder encodeObject:Frame forKey:kFrameKey];
+    [encoder encodeObject:self.backgroundColor forKey:kBackgroundColorKey];
+    
+}
+
+- (id)initWithCoder:(NSCoder *)decoder
+{
+    self = [super init];
+    if(self)
+    {
+        self.shape = [decoder decodeIntForKey:kShapeKey];
+        self.width = [decoder decodeFloatForKey:kWidthKey];
+        self.image = [decoder decodeObjectForKey:kImageKey];
+        self.color = [decoder decodeObjectForKey:kColorKey];
+        NSValue *StartPoint = [decoder decodeObjectForKey:kStartPointKey];
+        NSValue *EndPoint = [decoder decodeObjectForKey:kEndPointKey];
+        NSValue *Frame = [decoder decodeObjectForKey:kFrameKey];
+        UIColor* backgroundColor = [decoder decodeObjectForKey:kBackgroundColorKey];
+        
+        self.startPoint = StartPoint.CGPointValue;
+        self.endPoint = EndPoint.CGPointValue;
+        self.frame = Frame.CGRectValue;
+       self.backgroundColor = backgroundColor;
+        
+    }
+    return self;
+}
+
 
 @end

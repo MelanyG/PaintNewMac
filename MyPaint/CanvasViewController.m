@@ -14,8 +14,6 @@
 @interface CanvasViewController ()
 
 @property(nonatomic, strong) Drawer* rect;
-//@property(nonatomic, weak) UIView* draggingView;
-//@property(nonatomic, assign)CGPoint touchesBegan;
 @property(nonatomic, assign) NSInteger tag; //for protocol
 @property(nonatomic, strong) UIColor* button; //for protocol
 @property(nonatomic, assign) CGPoint start;
@@ -30,9 +28,9 @@
 @property(nonatomic, strong) UIPinchGestureRecognizer* pinchGesture;
 @property(nonatomic, strong) UIRotationGestureRecognizer* rotationGesture;
 @property(nonatomic, strong) UIPanGestureRecognizer* panGesture;
-//@property(nonatomic, assign) NSInteger coverTagsOfSubviews;
 @property(nonatomic, strong) NSMutableSet* arrayToDelete;
 @property(nonatomic, strong) UIImage* image;
+@property(nonatomic, assign) NSInteger saveLoadAction;
 
 @end
 
@@ -80,6 +78,33 @@
 -(void) didSelectFigure:(NSInteger) tag
 {
     self.tag=tag;
+}
+
+-(void) didSelectSaveButton: (NSInteger)tag
+{
+    self.saveLoadAction=tag;
+    NSLog(@"%@", self.myArray);
+    NSData* data = [NSKeyedArchiver archivedDataWithRootObject: self.myArray];
+    //NSLog(@"%@", data);
+  
+    [data writeToFile:@"/Users/melany/Desktop/textFile.txt" atomically:YES];
+     
+}
+
+-(void) didSelectLoadButton: (NSInteger) tag
+{
+    self.saveLoadAction=tag;
+    
+    NSData* dataFromFile = [[NSData alloc] initWithContentsOfFile:@"/Users/melany/Desktop/textFile.txt"];
+    [self.myArray removeAllObjects];
+  
+    self.myArray = [NSKeyedUnarchiver unarchiveObjectWithData:dataFromFile];
+      NSLog(@"%@", self.myArray);
+    for(int i=0; i<[self.myArray count]; i++)
+    {
+        [self.view addSubview:self.myArray[i]];
+        [self.myArray[i] setNeedsDisplay];
+    };
 }
 
 -(void) didSelectColor:(UIColor*) colorSelected
@@ -329,15 +354,15 @@
                                      selectedImage: self.image];
         
         self.rect.translatesAutoresizingMaskIntoConstraints = NO;
-        //    self.rect.backgroundColor = [UIColor clearColor];
+        self.rect.backgroundColor = [UIColor clearColor];
         [self.view addSubview:self.rect];
         [self.myArray addObject:self.rect];
         
-        [UIView animateWithDuration:0.3
-                         animations:^{
-                             self.rect.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
-                             self.rect.alpha = 0.3;
-                         }];
+//        [UIView animateWithDuration:0.3
+//                         animations:^{
+//                             self.rect.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
+//                             self.rect.alpha = 0.3;
+//                         }];
         NSLog(@"touchesBegan,%@", NSStringFromCGRect(frame));
     }
 }
@@ -373,13 +398,14 @@
     {
         
         [super touchesEnded:touches withEvent:event];
-        NSLog(@"touchesEnded");
+        //CGRect lframe = [firstView convertRect:buttons.frame fromView:secondView];
+        NSLog(@"touchesEnded ");
         
-        [UIView animateWithDuration:0.3
-                         animations:^{
-                             self.rect.transform = CGAffineTransformIdentity;
-                             self.rect.alpha = 1.f;
-                         }];
+//        [UIView animateWithDuration:0.3
+//                         animations:^{
+//                             self.rect.transform = CGAffineTransformIdentity;
+//                             self.rect.alpha = 1.f;
+//                         }];
         
         self.rect = nil;
         NSLog(@"q-ty of elements in array: %lu", (unsigned long)[self.myArray count]);

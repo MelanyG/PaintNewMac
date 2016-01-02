@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Drawer : UIView
+@interface Drawer : UIView <NSCoding>
 
 
 @property (nonatomic, assign) BOOL crossLine;
