@@ -82,12 +82,18 @@
 
 -(void) didSelectSaveButton: (NSInteger)tag
 {
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* directory = paths[0];
+    NSString* dataFile = [directory stringByAppendingPathComponent:@"textFile.txt"];
+    
     self.saveLoadAction=tag;
     NSLog(@"%@", self.myArray);
     NSData* data = [NSKeyedArchiver archivedDataWithRootObject: self.myArray];
     //NSLog(@"%@", data);
   
-    [data writeToFile:@"/Users/melany/Desktop/textFile.txt" atomically:YES];
+    [data writeToFile:dataFile atomically:YES];
      
 }
 
@@ -95,16 +101,27 @@
 {
     self.saveLoadAction=tag;
     
-    NSData* dataFromFile = [[NSData alloc] initWithContentsOfFile:@"/Users/melany/Desktop/textFile.txt"];
-    [self.myArray removeAllObjects];
-  
-    self.myArray = [NSKeyedUnarchiver unarchiveObjectWithData:dataFromFile];
-      NSLog(@"%@", self.myArray);
-    for(int i=0; i<[self.myArray count]; i++)
+    NSFileManager* fileManager = [NSFileManager defaultManager];
+    
+    NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* directory = paths[0];
+    NSString* dataFile = [directory stringByAppendingPathComponent:@"textFile.txt"];
+    
+    if([fileManager fileExistsAtPath:dataFile])
     {
-        [self.view addSubview:self.myArray[i]];
-        [self.myArray[i] setNeedsDisplay];
-    };
+        NSData* dataFromFile = [[NSData alloc] initWithContentsOfFile:dataFile];
+        [self.myArray removeAllObjects];
+        
+        self.myArray = [NSKeyedUnarchiver unarchiveObjectWithData:dataFromFile];
+        NSLog(@"%@", self.myArray);
+        for(int i=0; i<[self.myArray count]; i++)
+        {
+            [self.view addSubview:self.myArray[i]];
+            [self.myArray[i] setNeedsDisplay];
+        };
+        
+    }
+    
 }
 
 -(void) didSelectColor:(UIColor*) colorSelected
