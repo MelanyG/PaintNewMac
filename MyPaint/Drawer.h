@@ -10,7 +10,6 @@
 
 @interface Drawer : UIView <NSCoding>
 
-
 @property (nonatomic, assign) BOOL crossLine;
 
 - (instancetype)initWithFrame: (CGRect)frame

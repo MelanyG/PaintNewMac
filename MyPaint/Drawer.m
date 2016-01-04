@@ -27,7 +27,10 @@ typedef enum shapeTypes
 @property(nonatomic, assign) NSInteger shape;
 @property(nonatomic, strong) UIColor* color;
 @property(nonatomic, assign) CGFloat width;
-@property(nonatomic, weak) UIImage* image;
+@property(nonatomic, strong) UIImage* image;
+
+
+
 
 @end
 
@@ -95,6 +98,7 @@ typedef enum shapeTypes
     CGContextSetLineWidth(context, self.width);
     CGContextSetStrokeColorWithColor(context, [self.color CGColor] );
     CGPoint p = CGPointMake(rect.size.width, rect.size.height);
+    
     
     if (self.crossLine)
     {
@@ -296,20 +300,23 @@ typedef enum shapeTypes
 #define kImageKey                @"Image"
 #define kFrameKey                @"Frame"
 #define kBackgroundColorKey                @"BackgroundColor"
+#define kCrossLines               @"crossLines"
 
 - (void) encodeWithCoder:(NSCoder *)encoder
 {
+    
     NSValue *StartPoint = [NSValue valueWithCGPoint:self.startPoint];
     NSValue *EndPoint = [NSValue valueWithCGPoint:self.endPoint];
     NSValue *Frame = [NSValue valueWithCGRect:self.frame];
+    NSData *imageData = UIImagePNGRepresentation(self.image);
     
-    
+    [encoder encodeBool:self.crossLine forKey:kCrossLines];
     [encoder encodeObject:StartPoint forKey:kStartPointKey];
     [encoder encodeObject:EndPoint forKey:kEndPointKey];
     [encoder encodeInt:self.shape forKey:kShapeKey];
     [encoder encodeObject:self.color forKey:kColorKey];
     [encoder encodeFloat:self.width forKey:kWidthKey];
-    [encoder encodeObject:self.image forKey:kImageKey];
+    [encoder encodeObject:imageData forKey:kImageKey];
     [encoder encodeObject:Frame forKey:kFrameKey];
     [encoder encodeObject:self.backgroundColor forKey:kBackgroundColorKey];
     
@@ -322,16 +329,18 @@ typedef enum shapeTypes
     {
         self.shape = [decoder decodeIntForKey:kShapeKey];
         self.width = [decoder decodeFloatForKey:kWidthKey];
-        self.image = [decoder decodeObjectForKey:kImageKey];
+        NSData *imageData = [decoder decodeObjectForKey:kImageKey];
         self.color = [decoder decodeObjectForKey:kColorKey];
         NSValue *StartPoint = [decoder decodeObjectForKey:kStartPointKey];
         NSValue *EndPoint = [decoder decodeObjectForKey:kEndPointKey];
         NSValue *Frame = [decoder decodeObjectForKey:kFrameKey];
         UIColor* backgroundColor = [decoder decodeObjectForKey:kBackgroundColorKey];
+        self.crossLine = [decoder decodeBoolForKey:kCrossLines];
         
         self.startPoint = StartPoint.CGPointValue;
         self.endPoint = EndPoint.CGPointValue;
         self.frame = Frame.CGRectValue;
+        self.image = [[UIImage alloc] initWithData:imageData];
        self.backgroundColor = backgroundColor;
         
     }

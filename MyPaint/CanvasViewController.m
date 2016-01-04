@@ -32,6 +32,7 @@
 @property(nonatomic, strong) UIImage* image;
 @property(nonatomic, assign) NSInteger saveLoadAction;
 
+
 @end
 
 
@@ -116,7 +117,9 @@
         NSLog(@"%@", self.myArray);
         for(int i=0; i<[self.myArray count]; i++)
         {
+            
             [self.view addSubview:self.myArray[i]];
+
             [self.myArray[i] setNeedsDisplay];
         };
         
@@ -367,7 +370,7 @@
                                             color: self.button
                                             width: self.width
                                     startLocation: self.start
-                                      endLocation: self.start
+                                      endLocation: self.stop
                                      selectedImage: self.image];
         
         self.rect.translatesAutoresizingMaskIntoConstraints = NO;
