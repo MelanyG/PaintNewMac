@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyPaint/Drawer.m"
-            timestampString = "473602038.655919"
+            filePath = "MyPaint/SaveLoadPanelViewController.m"
+            timestampString = "473708623.090487"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
-            landmarkName = "-drawImage::"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "MyPaint/Drawer.m"
-            timestampString = "473602038.655919"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "330"
-            endingLineNumber = "330"
-            landmarkName = "-initWithCoder:"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "-dismissWithData:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyPaint/CanvasViewController.m"
-            timestampString = "473602038.655919"
+            timestampString = "473704762.659782"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "-didSelectLoadButton:"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "-didSelectSaveButton:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyPaint/Drawer.m"
-            timestampString = "473602038.655919"
+            filePath = "MyPaint/CanvasViewController.m"
+            timestampString = "473706206.27937"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
-            landmarkName = "-encodeWithCoder:"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "-didSelectLoadButton:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

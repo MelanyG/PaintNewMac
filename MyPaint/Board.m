@@ -7,15 +7,19 @@
 //
 
 #import "Board.h"
-#import "Drawer.h"
-
-
+//#import "Drawer.h"
+#import "FigureViewController.h"
+#import "ColorPanelController.h"
+#import "SaveLoadPanelViewController.h"
+#import "PopoverClassForFileName.h"
+#import "CanvasViewController.h"
 @interface Board ()
 
 @property(nonatomic, strong) FigureViewController* Figure;
 @property(nonatomic, strong) ColorPanelController* Colors;
 @property(nonatomic, strong) CanvasViewController* Canvas;
 @property(nonatomic, strong) SaveLoadPanelViewController* SaveLoad;
+@property (nonatomic, strong) PopoverClassForFileName* Pop;
 
 @end
 
@@ -48,10 +52,16 @@
     {
     self.SaveLoad = (SaveLoadPanelViewController *)[segue destinationViewController];
     }
+//    else if ([segue.identifier isEqualToString:@"popoverSegue"])
+//    {
+//        self.Pop = (PopoverClassForFileName *)[segue destinationViewController];
+//    }
     
     self.Figure.delegate = self.Canvas;
     self.Colors.delegate = self.Canvas;
     self.SaveLoad.delegate = self.Canvas;
+    //self.Pop.delegate = self.SaveLoad;
+    
 }
 
 

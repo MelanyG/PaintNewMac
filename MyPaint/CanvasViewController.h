@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "FigureViewController.h"
 #import "Drawer.h"
-#import "Board.h"
-//#import "ColorPanelController.h"
+//#import "Board.h"
+#import "Protocols.h"
+#import "ColorPanelController.h"
 
 
 @interface CanvasViewController : UIViewController <FigureDelegate, ColorDelegate, UIGestureRecognizerDelegate, SaveLoadDelegate>

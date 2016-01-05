@@ -7,21 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Board.h"
+//#import "Board.h"
+#import "PopoverClassForFileName.h"
+#import "Protocols.h"
+
+//@protocol SaveLoadDelegate;
+//@protocol PopoverClassForFileNameDelegate;
 
 
-@protocol SaveLoadDelegate;
 
 
-
-@interface SaveLoadPanelViewController : UIViewController
+@interface SaveLoadPanelViewController : UIViewController <PopoverClassForFileNameDelegate,DismissPopoverDelegate>
 
 @property(weak, nonatomic) id  delegate;//protocol
-
-//@property (weak, nonatomic) IBOutlet UIButton *imageReview;
-
-//@property (strong, nonatomic) UIImagePickerController* picker;
-//@property (nonatomic) NSInteger tag;
+//@property(weak, nonatomic) id <PopoverClassForFileNameDelegate>;
+//@property(weak, nonatomic) id <DismissPopoverDelegate>
 
 
 @end

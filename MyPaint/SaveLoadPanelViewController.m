@@ -7,8 +7,14 @@
 //
 
 #import "SaveLoadPanelViewController.h"
+#import "PopoverClassForFileName.h"
 
-@interface SaveLoadPanelViewController ()
+@interface SaveLoadPanelViewController () 
+@property (weak, nonatomic) IBOutlet UIButton *savebuttonPressed;
+@property (strong, nonatomic) UIPopoverController* popoverFileName;
+@property (strong, nonatomic) NSString* nameFile;
+@property (assign, nonatomic) BOOL saveButtonActive;
+
 
 @end
 
@@ -17,6 +23,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+   
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,15 +32,73 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)finishedEnteringTheFileName:(NSString*) fileName
+{
+    
+    //self.popoverFileName.delegate = self;
+    self.nameFile = fileName;
+    [self.popoverFileName dismissPopoverAnimated:YES];
+    if(self.saveButtonActive)
+    {
+        self.saveButtonActive=FALSE;
+        [self.delegate didSelectSaveButton:self.nameFile];
+      
+    }
+    else
+        [self.delegate didSelectLoadButton:self.nameFile];
+}
+
+-(void) creationOfPopover
+{
+    UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    PopoverClassForFileName* viewcontroller = [storyboard instantiateViewControllerWithIdentifier:@"Popover"];
+    viewcontroller.delegate = self;
+    self.popoverFileName = [[UIPopoverController alloc]initWithContentViewController:viewcontroller];
+   
+    UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.savebuttonPressed];
+    [self.popoverFileName presentPopoverFromBarButtonItem: backBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    
+    [self.popoverFileName setPopoverContentSize:CGSizeMake(300, 250)  animated:YES];
+//    [ self.popoverFileName presentPopoverFromRect:CGRectMake(100, 200, 50, 50) inView:self.view
+//
+    //permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+   }
+- (void)setPopoverContentSize:(CGSize)size animated:YESanimated
+{
+
+}
 - (IBAction)saveButton:(UIButton *)sender
 {
-    [self.delegate didSelectSaveButton:sender.tag];
+    self.saveButtonActive=TRUE;
+    [self creationOfPopover];
+    
 }
 
 - (IBAction)loadButton:(UIButton *)sender
 {
-    [self.delegate didSelectLoadButton:sender.tag];
+    [self creationOfPopover];
+    //[self.delegate didSelectLoadButton:self.nameFile];
 }
+
+//- (void ) popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+//{
+//    PopoverClassForFileName* fileName = (PopoverClassForFileName*)popoverController.contentViewController;
+//    
+//     self.nameFile = fileName.fileNameField.text;
+//    
+//    
+//}
+#pragma mark - Dismiss popover delegate
+
+- (void) dismissWithData:(NSString *)nameFile
+{
+    NSLog(@"%@", nameFile);
+    
+    
+    //[popover release];
+}
+
+
 
 /*
 #pragma mark - Navigation

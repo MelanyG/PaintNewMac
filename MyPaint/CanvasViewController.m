@@ -30,7 +30,7 @@
 @property(nonatomic, strong) UIPanGestureRecognizer* panGesture;
 @property(nonatomic, strong) NSMutableSet* arrayToDelete;
 @property(nonatomic, strong) UIImage* image;
-@property(nonatomic, assign) NSInteger saveLoadAction;
+@property(nonatomic, strong) NSString* fileName;
 
 
 @end
@@ -81,33 +81,34 @@
     self.tag=tag;
 }
 
--(void) didSelectSaveButton: (NSInteger)tag
+-(void) didSelectSaveButton: (NSString*) fileName
 {
-    NSFileManager* fileManager = [NSFileManager defaultManager];
+    //NSFileManager* fileManager = [NSFileManager defaultManager];
     
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* directory = paths[0];
-    NSString* dataFile = [directory stringByAppendingPathComponent:@"textFile.txt"];
+    self.fileName = fileName;
+    NSString* dataFile = [directory stringByAppendingPathComponent:self.fileName];
     
-    self.saveLoadAction=tag;
+    
     NSLog(@"%@", self.myArray);
     NSData* data = [NSKeyedArchiver archivedDataWithRootObject: self.myArray];
-    //NSLog(@"%@", data);
+    NSLog(@"%@", data);
   
     [data writeToFile:dataFile atomically:YES];
      
 }
 
--(void) didSelectLoadButton: (NSInteger) tag
+-(void) didSelectLoadButton: (NSString*) fileName
 {
-    self.saveLoadAction=tag;
     
     NSFileManager* fileManager = [NSFileManager defaultManager];
     
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* directory = paths[0];
-    NSString* dataFile = [directory stringByAppendingPathComponent:@"textFile.txt"];
-    
+    self.fileName = fileName;
+    NSString* dataFile = [directory stringByAppendingPathComponent: self.fileName];
+     
     if([fileManager fileExistsAtPath:dataFile])
     {
         NSData* dataFromFile = [[NSData alloc] initWithContentsOfFile:dataFile];

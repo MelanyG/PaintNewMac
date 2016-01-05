@@ -268,7 +268,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BHm-A4-es8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4" y="463"/>
+            <point key="canvasLocation" x="816" y="463"/>
         </scene>
         <!--Figure View Controller-->
         <scene sceneID="kh2-Hg-p2F">
@@ -463,7 +463,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="idD-GQ-6cA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-368.5" y="553"/>
+            <point key="canvasLocation" x="17.5" y="637"/>
         </scene>
         <!--Canvas View Controller-->
         <scene sceneID="ewS-Xn-wYi">
@@ -482,7 +482,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vyj-rP-XE0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="846" y="-201"/>
+            <point key="canvasLocation" x="699.5" y="-137"/>
         </scene>
         <!--Settings For Color-->
         <scene sceneID="WQ9-3K-WnW">
@@ -671,12 +671,16 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJa-Uw-Mob" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="956" y="400"/>
+            <point key="canvasLocation" x="1768" y="400"/>
         </scene>
         <!--Save Load Panel View Controller-->
         <scene sceneID="REQ-py-DJR">
             <objects>
                 <viewController id="S1h-DZ-W3J" customClass="SaveLoadPanelViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VbR-IH-Kmj"/>
+                        <viewControllerLayoutGuide type="bottom" id="jcu-LY-bS3"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="t73-oC-ESh">
                         <rect key="frame" x="0.0" y="0.0" width="95" height="93"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -706,10 +710,61 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="savebuttonPressed" destination="9qT-JM-Vxg" id="HGF-ut-ubL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lor-Hd-SWQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-690" y="361"/>
+            <point key="canvasLocation" x="-272.5" y="382.5"/>
+        </scene>
+        <!--Popover Class For File Name-->
+        <scene sceneID="8ey-HB-hUp">
+            <objects>
+                <viewController storyboardIdentifier="Popover" id="Blk-L1-pvw" customClass="PopoverClassForFileName" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OGS-0B-ug7"/>
+                        <viewControllerLayoutGuide type="bottom" id="nJf-H3-OYE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Boj-uw-VvR">
+                        <rect key="frame" x="0.0" y="0.0" width="300" height="250"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Please enter file name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMR-AP-ZYG">
+                                <rect key="frame" x="57" y="28" width="187" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UWp-Wl-dR3">
+                                <rect key="frame" x="49" y="90" width="203" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tAC-n0-MGY">
+                                <rect key="frame" x="105" y="168" width="91" height="41"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="doneButtonPressed:" destination="Blk-L1-pvw" eventType="touchUpInside" id="czh-bh-aVf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="QIW-ca-Yrf"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="300" height="250"/>
+                    <connections>
+                        <outlet property="IntroductionLabel" destination="SMR-AP-ZYG" id="HIT-jO-bQ9"/>
+                        <outlet property="doneButtonPressed" destination="tAC-n0-MGY" id="wHe-4h-kzh"/>
+                        <outlet property="fileNameField" destination="UWp-Wl-dR3" id="3xG-Pq-ciB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DML-aP-iNW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-565" y="501"/>
         </scene>
     </scenes>
     <resources>

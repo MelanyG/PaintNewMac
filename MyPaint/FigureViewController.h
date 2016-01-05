@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Board.h"
+//#import "Board.h"
+#import "Protocols.h"
 
 
-
-@protocol FigureDelegate;
+//@protocol FigureDelegate;
 
 @interface FigureViewController: UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
