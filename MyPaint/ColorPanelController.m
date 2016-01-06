@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UIButton *settings;
 @property (nonatomic, assign) NSInteger selectedButtonColor;
 @property (nonatomic, assign) BOOL shouldDelete;
+@property (nonatomic, assign) NSInteger alreadySelectedColor;
 
 @end
 
@@ -64,6 +65,7 @@
     UIButton * PressedButton = (UIButton*)sender;
     
     [self deselectButton:self.selectedButtonColor];
+    if(self.alreadySelectedColor != PressedButton.tag)
     [self selectButton:PressedButton.tag];
     self.selectedButtonColor = PressedButton.tag;
     
@@ -160,6 +162,7 @@
 - (void)selectButton:(NSInteger)index
 {
     UIView *button = [self.view viewWithTag:index];
+    self.alreadySelectedColor = index;
     button.transform = CGAffineTransformMakeScale(1.2, 1.2);
 }
 

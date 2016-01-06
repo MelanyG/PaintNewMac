@@ -35,7 +35,7 @@
 - (void)finishedEnteringTheFileName:(NSString*) fileName
 {
     
-    //self.popoverFileName.delegate = self;
+    
     self.nameFile = fileName;
     [self.popoverFileName dismissPopoverAnimated:YES];
     if(self.saveButtonActive)
@@ -57,16 +57,9 @@
    
     UIBarButtonItem *backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.savebuttonPressed];
     [self.popoverFileName presentPopoverFromBarButtonItem: backBarButtonItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    
     [self.popoverFileName setPopoverContentSize:CGSizeMake(300, 250)  animated:YES];
-//    [ self.popoverFileName presentPopoverFromRect:CGRectMake(100, 200, 50, 50) inView:self.view
-//
-    //permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
    }
-- (void)setPopoverContentSize:(CGSize)size animated:YESanimated
-{
 
-}
 - (IBAction)saveButton:(UIButton *)sender
 {
     self.saveButtonActive=TRUE;
@@ -77,17 +70,9 @@
 - (IBAction)loadButton:(UIButton *)sender
 {
     [self creationOfPopover];
-    //[self.delegate didSelectLoadButton:self.nameFile];
-}
+   }
 
-//- (void ) popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
-//{
-//    PopoverClassForFileName* fileName = (PopoverClassForFileName*)popoverController.contentViewController;
-//    
-//     self.nameFile = fileName.fileNameField.text;
-//    
-//    
-//}
+
 #pragma mark - Dismiss popover delegate
 
 - (void) dismissWithData:(NSString *)nameFile
@@ -95,8 +80,7 @@
     NSLog(@"%@", nameFile);
     
     
-    //[popover release];
-}
+   }
 
 
 

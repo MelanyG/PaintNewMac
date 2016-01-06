@@ -52,10 +52,7 @@
     {
     self.SaveLoad = (SaveLoadPanelViewController *)[segue destinationViewController];
     }
-//    else if ([segue.identifier isEqualToString:@"popoverSegue"])
-//    {
-//        self.Pop = (PopoverClassForFileName *)[segue destinationViewController];
-//    }
+
     
     self.Figure.delegate = self.Canvas;
     self.Colors.delegate = self.Canvas;

@@ -52,9 +52,16 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     
 }
+
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)backgroundButtonPressed:(UIButton *)sender
+{
+   //[self.Gallery setContentSize:CGSizeMake(300, 250)  animated:YES];
+    
 }
 
 

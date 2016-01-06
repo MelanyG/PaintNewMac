@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 //#import "Board.h"
 #import "Protocols.h"
-
+#import "GalleryOfImages.h"
 
 //@protocol FigureDelegate;
 
@@ -21,7 +21,8 @@
 
 @property (strong, nonatomic) UIImagePickerController* picker;
 @property (nonatomic) NSInteger tag;
-
+@property (strong, nonatomic) IBOutlet UIButton *backgroundSelected;
+@property(nonatomic, strong) GalleryOfImages * Gallery;
 
 @end
 

@@ -20,8 +20,7 @@
 @interface SaveLoadPanelViewController : UIViewController <PopoverClassForFileNameDelegate,DismissPopoverDelegate>
 
 @property(weak, nonatomic) id  delegate;//protocol
-//@property(weak, nonatomic) id <PopoverClassForFileNameDelegate>;
-//@property(weak, nonatomic) id <DismissPopoverDelegate>
+
 
 
 @end

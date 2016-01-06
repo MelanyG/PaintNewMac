@@ -230,10 +230,10 @@
                 
                 [UIView animateWithDuration:0.3
                                  animations:^{
-                                     self.rect.transform=CGAffineTransformIdentity;
-                                     self.rect.alpha = 1.f;
+                                     self.currentView.transform=CGAffineTransformIdentity;
+                                     self.currentView.alpha = 1.f;
                                  }];
-                
+                [self.arrayToDelete removeObject:self.currentView];
             }
             gestureTab.delegate = self;
         }

@@ -53,6 +53,11 @@
 		4084E5741C34216A00D84AD7 /* forPaint.png in Resources */ = {isa = PBXBuildFile; fileRef = 4084E5731C34216A00D84AD7 /* forPaint.png */; };
 		4084E5771C3550C700D84AD7 /* SaveLoadPanelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4084E5761C3550C700D84AD7 /* SaveLoadPanelViewController.m */; };
 		4084E57A1C3AC1A300D84AD7 /* PopoverClassForFileName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4084E5791C3AC1A200D84AD7 /* PopoverClassForFileName.m */; };
+		4084E5841C3D292B00D84AD7 /* GalleryOfImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 4084E5831C3D292B00D84AD7 /* GalleryOfImages.m */; };
+		40EDE6501C3D4FFB00F3AF32 /* Bears.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE64F1C3D4FFB00F3AF32 /* Bears.png */; };
+		40EDE6521C3D500100F3AF32 /* Christmas.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE6511C3D500100F3AF32 /* Christmas.png */; };
+		40EDE6541C3D500800F3AF32 /* Snowflakes.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE6531C3D500800F3AF32 /* Snowflakes.png */; };
+		40EDE6561C3D501000F3AF32 /* Dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE6551C3D501000F3AF32 /* Dog.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +132,12 @@
 		4084E5781C3AC1A200D84AD7 /* PopoverClassForFileName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverClassForFileName.h; sourceTree = "<group>"; };
 		4084E5791C3AC1A200D84AD7 /* PopoverClassForFileName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverClassForFileName.m; sourceTree = "<group>"; };
 		4084E57B1C3C0E3900D84AD7 /* Protocols.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Protocols.h; sourceTree = "<group>"; };
+		4084E5821C3D292B00D84AD7 /* GalleryOfImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GalleryOfImages.h; path = ../GalleryOfImages.h; sourceTree = "<group>"; };
+		4084E5831C3D292B00D84AD7 /* GalleryOfImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GalleryOfImages.m; path = ../GalleryOfImages.m; sourceTree = "<group>"; };
+		40EDE64F1C3D4FFB00F3AF32 /* Bears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bears.png; sourceTree = "<group>"; };
+		40EDE6511C3D500100F3AF32 /* Christmas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Christmas.png; sourceTree = "<group>"; };
+		40EDE6531C3D500800F3AF32 /* Snowflakes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Snowflakes.png; sourceTree = "<group>"; };
+		40EDE6551C3D501000F3AF32 /* Dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dog.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +225,8 @@
 		369B19411C24374100027889 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				4084E5821C3D292B00D84AD7 /* GalleryOfImages.h */,
+				4084E5831C3D292B00D84AD7 /* GalleryOfImages.m */,
 				4084E57B1C3C0E3900D84AD7 /* Protocols.h */,
 				4084E5751C3550C700D84AD7 /* SaveLoadPanelViewController.h */,
 				4084E5761C3550C700D84AD7 /* SaveLoadPanelViewController.m */,
@@ -236,6 +249,10 @@
 		36DCD6131C29814600BF4709 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				40EDE6551C3D501000F3AF32 /* Dog.png */,
+				40EDE6531C3D500800F3AF32 /* Snowflakes.png */,
+				40EDE6511C3D500100F3AF32 /* Christmas.png */,
+				40EDE64F1C3D4FFB00F3AF32 /* Bears.png */,
 				360CD0C21C317C57002593B6 /* Circle.png */,
 				4084E5711C32D33A00D84AD7 /* Line.png */,
 				4084E5731C34216A00D84AD7 /* forPaint.png */,
@@ -361,16 +378,19 @@
 				36DCD6311C29814600BF4709 /* Eraser.png in Resources */,
 				36DCD63F1C29814600BF4709 /* Yellow.png in Resources */,
 				36DCD6321C29814600BF4709 /* g.png in Resources */,
+				40EDE6501C3D4FFB00F3AF32 /* Bears.png in Resources */,
 				360CD0C81C317C57002593B6 /* thinSquare.png in Resources */,
 				36DCD62E1C29814600BF4709 /* Custom-Color.png in Resources */,
 				36DCD6361C29814600BF4709 /* Opacity.png in Resources */,
 				360CD0C71C317C57002593B6 /* Hexagon.png in Resources */,
 				36DCD63B1C29814600BF4709 /* Setting-1.png in Resources */,
 				366C729E1C22D0DD006076A5 /* LaunchScreen.xib in Resources */,
+				40EDE6561C3D501000F3AF32 /* Dog.png in Resources */,
 				36DCD62F1C29814600BF4709 /* DarkGreen.png in Resources */,
 				36DCD63A1C29814600BF4709 /* Save-Small.png in Resources */,
 				36DCD62C1C29814600BF4709 /* Blue.png in Resources */,
 				36DCD62D1C29814600BF4709 /* Brown.png in Resources */,
+				40EDE6521C3D500100F3AF32 /* Christmas.png in Resources */,
 				36DCD63D1C29814600BF4709 /* thickness.png in Resources */,
 				360CD0C91C317C57002593B6 /* Triangle.png in Resources */,
 				36DCD62A1C29814600BF4709 /* b.png in Resources */,
@@ -380,6 +400,7 @@
 				360CD0C61C317C57002593B6 /* Circle.png in Resources */,
 				36DCD6341C29814600BF4709 /* LightBlue.png in Resources */,
 				36DCD6381C29814600BF4709 /* Red.png in Resources */,
+				40EDE6541C3D500800F3AF32 /* Snowflakes.png in Resources */,
 				36DCD6371C29814600BF4709 /* r.png in Resources */,
 				4084E5721C32D33A00D84AD7 /* Line.png in Resources */,
 				36DCD6301C29814600BF4709 /* DarkOrange.png in Resources */,
@@ -408,6 +429,7 @@
 				4084E5771C3550C700D84AD7 /* SaveLoadPanelViewController.m in Sources */,
 				36203C971C2C5D3800E21A3C /* SettingsForColor.m in Sources */,
 				369B19441C2437FF00027889 /* CanvasViewController.m in Sources */,
+				4084E5841C3D292B00D84AD7 /* GalleryOfImages.m in Sources */,
 				369B193D1C2433DF00027889 /* ColorPanelController.m in Sources */,
 				366C72901C22D0DC006076A5 /* main.m in Sources */,
 				4084E57A1C3AC1A300D84AD7 /* PopoverClassForFileName.m in Sources */,

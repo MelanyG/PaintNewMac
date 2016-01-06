@@ -50,18 +50,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="568" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T0Z-Rp-fGX">
-                                <rect key="frame" x="0.0" y="0.0" width="95" height="415"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="95" id="ymH-H3-QDV"/>
-                                </constraints>
-                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
-                                </variation>
-                                <connections>
-                                    <segue destination="6T0-z9-bKR" kind="embed" identifier="FigureSegue" id="8OF-2L-0aV"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9E3-JR-7di">
                                 <rect key="frame" x="95" y="0.0" width="473" height="508"/>
                                 <color key="backgroundColor" red="0.95834283759124084" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -86,6 +74,18 @@
                                 <rect key="frame" x="0.0" y="415" width="95" height="93"/>
                                 <connections>
                                     <segue destination="S1h-DZ-W3J" kind="embed" identifier="SaveLoadSegue" id="qce-Xf-3NT"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T0Z-Rp-fGX">
+                                <rect key="frame" x="0.0" y="0.0" width="95" height="415"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="95" id="ymH-H3-QDV"/>
+                                </constraints>
+                                <variation key="heightClass=regular-widthClass=regular" ambiguous="YES">
+                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="6T0-z9-bKR" kind="embed" identifier="FigureSegue" id="8OF-2L-0aV"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -338,6 +338,9 @@
                                 <state key="normal" title="Background">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="backgroundButtonPressed:" destination="6T0-z9-bKR" eventType="touchUpInside" id="tDZ-8H-syq"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="6" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IqA-dM-2ee">
                                 <rect key="frame" x="1" y="369" width="93" height="44"/>
@@ -458,6 +461,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="95" height="414"/>
                     <connections>
+                        <outlet property="backgroundSelected" destination="phq-37-D5X" id="txU-in-RQA"/>
                         <outlet property="imageReview" destination="IqA-dM-2ee" id="618-rg-vrN"/>
                     </connections>
                 </viewController>
@@ -764,7 +768,35 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DML-aP-iNW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-565" y="501"/>
+            <point key="canvasLocation" x="-498" y="362"/>
+        </scene>
+        <!--Gallery Of Images-->
+        <scene sceneID="iPH-fk-JdS">
+            <objects>
+                <viewController id="KOn-C4-je1" customClass="GalleryOfImages" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="BK8-Ta-v14"/>
+                        <viewControllerLayoutGuide type="bottom" id="d3y-KM-BSI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vWd-Cr-F4r">
+                        <rect key="frame" x="0.0" y="0.0" width="474" height="201"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b41-OU-MZW">
+                                <rect key="frame" x="0.0" y="0.0" width="960" height="200"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="474" height="201"/>
+                    <connections>
+                        <outlet property="scrollView" destination="b41-OU-MZW" id="SDd-KQ-ZUx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KlZ-1N-Elg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-503" y="985.5"/>
         </scene>
     </scenes>
     <resources>
