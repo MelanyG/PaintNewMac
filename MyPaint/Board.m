@@ -13,13 +13,25 @@
 #import "SaveLoadPanelViewController.h"
 #import "PopoverClassForFileName.h"
 #import "CanvasViewController.h"
-@interface Board ()
+#import "GalleryOfImages.h"
+#import "Protocols.h"
+
+
+@interface Board ()<FigureBoardDelegate>
+
+
+
 
 @property(nonatomic, strong) FigureViewController* Figure;
 @property(nonatomic, strong) ColorPanelController* Colors;
 @property(nonatomic, strong) CanvasViewController* Canvas;
 @property(nonatomic, strong) SaveLoadPanelViewController* SaveLoad;
-@property (nonatomic, strong) PopoverClassForFileName* Pop;
+@property(nonatomic, strong) PopoverClassForFileName* Pop;
+@property(nonatomic, strong) GalleryOfImages* Gallery;
+@property(weak, nonatomic) IBOutlet NSLayoutConstraint *galleryHight;
+@property(nonatomic, assign) BOOL scrollOnScreen;
+
+
 
 @end
 
@@ -52,14 +64,43 @@
     {
     self.SaveLoad = (SaveLoadPanelViewController *)[segue destinationViewController];
     }
+//    else if ([segue.identifier isEqualToString:@"GallerySegue"])
+//    {
+//        self.Gallery = (GalleryOfImages *)[segue destinationViewController];
+//    }
 
     
     self.Figure.delegate = self.Canvas;
+    self.Figure.delegateToBoard = self;
     self.Colors.delegate = self.Canvas;
     self.SaveLoad.delegate = self.Canvas;
-    //self.Pop.delegate = self.SaveLoad;
+   // self.Gallery.delegate = self.Canvas;
+ 
     
 }
+
+-(void) didBackgroundSelect:(CGFloat)height
+{
+    if(self.scrollOnScreen == 0)
+    {
+        self.scrollOnScreen = 1;
+        self.galleryHight.constant = height;
+        
+        [UIView animateWithDuration:0.5f animations:^{
+            [self.view layoutIfNeeded];
+            [self.view bringSubviewToFront:self.Gallery.scrollView];
+        }];
+    }
+    else
+    {
+        self.scrollOnScreen = 0;
+        self.galleryHight.constant = 0;
+        [UIView animateWithDuration:0.5f animations:^{
+            [self.view layoutIfNeeded];
+        }];
+    }
+}
+
 
 
 - (void)didReceiveMemoryWarning {

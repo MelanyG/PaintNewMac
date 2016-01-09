@@ -20,6 +20,13 @@
 -(void) didSelectImage: (UIImage*) image
                       : (NSInteger) tag;
 
+
+@end
+
+@protocol FigureBoardDelegate <NSObject>
+
+-(void) didBackgroundSelect:(CGFloat)height;
+
 @end
 
 @protocol ColorDelegate <NSObject>

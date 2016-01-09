@@ -58,6 +58,15 @@
 		40EDE6521C3D500100F3AF32 /* Christmas.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE6511C3D500100F3AF32 /* Christmas.png */; };
 		40EDE6541C3D500800F3AF32 /* Snowflakes.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE6531C3D500800F3AF32 /* Snowflakes.png */; };
 		40EDE6561C3D501000F3AF32 /* Dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE6551C3D501000F3AF32 /* Dog.png */; };
+		40EDE6A11C40324800F3AF32 /* t.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE6A01C40324800F3AF32 /* t.jpg */; };
+		40EDE6A61C40331400F3AF32 /* Cat1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE6A21C40331400F3AF32 /* Cat1.jpg */; };
+		40EDE6A71C40331400F3AF32 /* cat2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE6A31C40331400F3AF32 /* cat2.jpg */; };
+		40EDE6A81C40331400F3AF32 /* ch.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE6A41C40331400F3AF32 /* ch.jpg */; };
+		40EDE6A91C40331400F3AF32 /* Jaguar.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE6A51C40331400F3AF32 /* Jaguar.jpg */; };
+		40EDE6AF1C416E8200F3AF32 /* campus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE6AA1C416E8200F3AF32 /* campus.jpg */; };
+		40EDE6B11C416E8200F3AF32 /* floral-frames-vectors4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE6AC1C416E8200F3AF32 /* floral-frames-vectors4.jpg */; };
+		40EDE6B21C416E8200F3AF32 /* halloween.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE6AD1C416E8200F3AF32 /* halloween.png */; };
+		40EDE6B31C416E8200F3AF32 /* Mickey.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE6AE1C416E8200F3AF32 /* Mickey.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +147,15 @@
 		40EDE6511C3D500100F3AF32 /* Christmas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Christmas.png; sourceTree = "<group>"; };
 		40EDE6531C3D500800F3AF32 /* Snowflakes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Snowflakes.png; sourceTree = "<group>"; };
 		40EDE6551C3D501000F3AF32 /* Dog.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dog.png; sourceTree = "<group>"; };
+		40EDE6A01C40324800F3AF32 /* t.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = t.jpg; sourceTree = "<group>"; };
+		40EDE6A21C40331400F3AF32 /* Cat1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Cat1.jpg; sourceTree = "<group>"; };
+		40EDE6A31C40331400F3AF32 /* cat2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat2.jpg; sourceTree = "<group>"; };
+		40EDE6A41C40331400F3AF32 /* ch.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ch.jpg; sourceTree = "<group>"; };
+		40EDE6A51C40331400F3AF32 /* Jaguar.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Jaguar.jpg; sourceTree = "<group>"; };
+		40EDE6AA1C416E8200F3AF32 /* campus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = campus.jpg; sourceTree = "<group>"; };
+		40EDE6AC1C416E8200F3AF32 /* floral-frames-vectors4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "floral-frames-vectors4.jpg"; sourceTree = "<group>"; };
+		40EDE6AD1C416E8200F3AF32 /* halloween.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = halloween.png; sourceTree = "<group>"; };
+		40EDE6AE1C416E8200F3AF32 /* Mickey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Mickey.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +267,15 @@
 		36DCD6131C29814600BF4709 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				40EDE6AA1C416E8200F3AF32 /* campus.jpg */,
+				40EDE6AC1C416E8200F3AF32 /* floral-frames-vectors4.jpg */,
+				40EDE6AD1C416E8200F3AF32 /* halloween.png */,
+				40EDE6AE1C416E8200F3AF32 /* Mickey.png */,
+				40EDE6A01C40324800F3AF32 /* t.jpg */,
+				40EDE6A21C40331400F3AF32 /* Cat1.jpg */,
+				40EDE6A31C40331400F3AF32 /* cat2.jpg */,
+				40EDE6A41C40331400F3AF32 /* ch.jpg */,
+				40EDE6A51C40331400F3AF32 /* Jaguar.jpg */,
 				40EDE6551C3D501000F3AF32 /* Dog.png */,
 				40EDE6531C3D500800F3AF32 /* Snowflakes.png */,
 				40EDE6511C3D500100F3AF32 /* Christmas.png */,
@@ -331,7 +358,7 @@
 		366C72821C22D0DC006076A5 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Melany Gulianovych";
 				TargetAttributes = {
 					366C72891C22D0DC006076A5 = {
@@ -377,8 +404,11 @@
 				365D0A9A1C2D81B200AFA2ED /* 1211778056.png in Resources */,
 				36DCD6311C29814600BF4709 /* Eraser.png in Resources */,
 				36DCD63F1C29814600BF4709 /* Yellow.png in Resources */,
+				40EDE6A91C40331400F3AF32 /* Jaguar.jpg in Resources */,
 				36DCD6321C29814600BF4709 /* g.png in Resources */,
+				40EDE6B21C416E8200F3AF32 /* halloween.png in Resources */,
 				40EDE6501C3D4FFB00F3AF32 /* Bears.png in Resources */,
+				40EDE6A71C40331400F3AF32 /* cat2.jpg in Resources */,
 				360CD0C81C317C57002593B6 /* thinSquare.png in Resources */,
 				36DCD62E1C29814600BF4709 /* Custom-Color.png in Resources */,
 				36DCD6361C29814600BF4709 /* Opacity.png in Resources */,
@@ -386,23 +416,29 @@
 				36DCD63B1C29814600BF4709 /* Setting-1.png in Resources */,
 				366C729E1C22D0DD006076A5 /* LaunchScreen.xib in Resources */,
 				40EDE6561C3D501000F3AF32 /* Dog.png in Resources */,
+				40EDE6A11C40324800F3AF32 /* t.jpg in Resources */,
 				36DCD62F1C29814600BF4709 /* DarkGreen.png in Resources */,
 				36DCD63A1C29814600BF4709 /* Save-Small.png in Resources */,
 				36DCD62C1C29814600BF4709 /* Blue.png in Resources */,
 				36DCD62D1C29814600BF4709 /* Brown.png in Resources */,
+				40EDE6AF1C416E8200F3AF32 /* campus.jpg in Resources */,
 				40EDE6521C3D500100F3AF32 /* Christmas.png in Resources */,
 				36DCD63D1C29814600BF4709 /* thickness.png in Resources */,
 				360CD0C91C317C57002593B6 /* Triangle.png in Resources */,
+				40EDE6A81C40331400F3AF32 /* ch.jpg in Resources */,
 				36DCD62A1C29814600BF4709 /* b.png in Resources */,
 				36DCD6391C29814600BF4709 /* reset-Small.png in Resources */,
 				366C729B1C22D0DD006076A5 /* Images.xcassets in Resources */,
 				4084E5701C32D33300D84AD7 /* Trapeze.png in Resources */,
+				40EDE6B31C416E8200F3AF32 /* Mickey.png in Resources */,
 				360CD0C61C317C57002593B6 /* Circle.png in Resources */,
+				40EDE6A61C40331400F3AF32 /* Cat1.jpg in Resources */,
 				36DCD6341C29814600BF4709 /* LightBlue.png in Resources */,
 				36DCD6381C29814600BF4709 /* Red.png in Resources */,
 				40EDE6541C3D500800F3AF32 /* Snowflakes.png in Resources */,
 				36DCD6371C29814600BF4709 /* r.png in Resources */,
 				4084E5721C32D33A00D84AD7 /* Line.png in Resources */,
+				40EDE6B11C416E8200F3AF32 /* floral-frames-vectors4.jpg in Resources */,
 				36DCD6301C29814600BF4709 /* DarkOrange.png in Resources */,
 				36DCD63C1C29814600BF4709 /* Setting-2.png in Resources */,
 			);
@@ -495,6 +531,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -559,6 +596,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MyPaint/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "MG.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -570,6 +608,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MyPaint/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "MG.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -589,6 +628,7 @@
 				);
 				INFOPLIST_FILE = MyPaintTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "MG.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyPaint.app/MyPaint";
 			};
@@ -604,6 +644,7 @@
 				);
 				INFOPLIST_FILE = MyPaintTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "MG.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyPaint.app/MyPaint";
 			};

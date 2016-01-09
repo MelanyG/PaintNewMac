@@ -17,7 +17,7 @@ typedef enum shapeTypes
     trapeze,
     polygon,
     image,
-    
+    smoothLine,
 }SelectedFigure;
 
 @interface Drawer()
@@ -87,6 +87,10 @@ typedef enum shapeTypes
         case image:
             [self drawImage: rect
                            : self.image];
+            break;
+        case smoothLine:
+            [self drawSmoothLine:rect];
+            break;
         default:
             break;
     }
@@ -289,6 +293,17 @@ typedef enum shapeTypes
     [image drawInRect:rect];
     NSLog(@"draw image%@", NSStringFromCGRect(self.frame));
 }
+
+-(void) drawSmoothLine:(CGRect)rect
+{
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, self.startPoint.x, self.endPoint.y);
+    CGContextAddLineToPoint(context, self.endPoint.x, self.endPoint.y);
+    CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextStrokePath(context);
+}
+
 
 #pragma mark - NSCoding
 

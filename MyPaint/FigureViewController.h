@@ -11,11 +11,12 @@
 #import "Protocols.h"
 #import "GalleryOfImages.h"
 
-//@protocol FigureDelegate;
+
 
 @interface FigureViewController: UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property(weak, nonatomic) id  delegate;//protocol
+@property(weak, nonatomic) id <FigureDelegate> delegate;
+@property(weak, nonatomic) id <FigureBoardDelegate> delegateToBoard;
 
 @property (weak, nonatomic) IBOutlet UIButton *imageReview;
 

@@ -17,55 +17,46 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-     self.scrollView.backgroundColor = [UIColor clearColor];
+    self.scrollView.backgroundColor = [UIColor redColor];
     
     NSArray *frameArray = [[NSArray alloc] initWithObjects:
-                            [UIImage imageNamed:@"Dog.png"],
-                            [UIImage imageNamed:@"Snowflakes.png"],
-                            [UIImage imageNamed:@"Christmas.png"],
-                            [UIImage imageNamed:@"Bears.png"], nil];
+                           [UIImage imageNamed:@"campus.jpg"],
+                           [UIImage imageNamed:@"Dog.png"],
+                           [UIImage imageNamed:@"Snowflakes.png"],
+                           [UIImage imageNamed:@"Christmas.png"],
+                           [UIImage imageNamed:@"Bears.png"],
+                           [UIImage imageNamed:@"halloween.png"],
+                           [UIImage imageNamed:@"Mickey.png"],
+                           [UIImage imageNamed:@"t.jpg"],
+                           [UIImage imageNamed:@"ch.jpg"],
+                           nil];
     
-    CGFloat imageWidth = 100.f;
-    CGFloat imageHeight = 180.f;
-    CGFloat yPosition = 0.f;
+    CGFloat imageWidth = 300.f;
+    CGFloat imageHeight = 280.f;
+    CGFloat xPosition = 5.f;
     CGFloat scrollViewControllerSize = 0;
     
     for(int i = 0; i<frameArray.count; i++)
     {
-        UIImageView* imageView = [[UIImageView alloc]initWithImage:frameArray[i]];
-        UIImageView* myImageView;
-        myImageView.image = imageView.image;
+        UIImageView* myImageView = [[UIImageView alloc]initWithImage:frameArray[i]];
         myImageView.contentMode = UIViewContentModeScaleAspectFit;
         
-        myImageView.frame = CGRectMake(10, yPosition, imageWidth, imageHeight);
-        myImageView.center = self.view.center;
-        
+        myImageView.frame = CGRectMake(xPosition, 5, imageWidth, imageHeight);
         [self.scrollView addSubview:myImageView];
         
-        CGFloat space = 20.f;
-        yPosition+=imageHeight+space;
-        scrollViewControllerSize+=imageWidth+space;
+        CGFloat space = 5.f;
+        xPosition+=imageWidth+space;
+        scrollViewControllerSize+=imageHeight+space;
+        
         
         self.scrollView.contentSize = CGSizeMake(imageWidth,scrollViewControllerSize);
-
         
-                                   
         
-    
+        
+        
     }
-    
-    
-//    int pageCount = 1;
-//    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 960, 200) ];
-//   
-//    self.scrollView.pagingEnabled = YES;
-//       
-//    CGRect viewImage = self.scrollView.bounds;
-//    
-//    UIImageView* imageView = [[UIImageView alloc] initWithFrame:viewImage];
-//    [self.scrollView addSubview:imageView];
-    
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

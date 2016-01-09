@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyPaint/CanvasViewController.m"
-            timestampString = "473704762.659782"
+            filePath = "MyPaint/FigureViewController.m"
+            timestampString = "474035756.965316"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
-            landmarkName = "-didSelectSaveButton:"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "-selectFigurePressed:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +42,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyPaint/CanvasViewController.m"
-            timestampString = "473706206.27937"
+            timestampString = "474048550.444671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-didSelectLoadButton:"
+            startingLineNumber = "362"
+            endingLineNumber = "362"
+            landmarkName = "-touchesBegan:withEvent:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,12 +58,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MyPaint/CanvasViewController.m"
-            timestampString = "473767695.163147"
+            timestampString = "474036578.786969"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
-            landmarkName = "-handleDoubleTap:"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "-didSelectFigure:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,14 +73,30 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MyPaint/CanvasViewController.m"
-            timestampString = "473771883.612287"
+            filePath = "MyPaint/Protocols.h"
+            timestampString = "474037822.231639"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
-            landmarkName = "-handleDoubleTap:"
-            landmarkType = "5">
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "-didSelectFigure:"
+            landmarkType = "4">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MyPaint/Protocols.h"
+            timestampString = "474037824.887737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "-didBackgroundSelect:"
+            landmarkType = "4">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -10,14 +10,7 @@
 
 
 
-//@protocol FigureDelegate;
-//@protocol ColorDelegate;
-//@protocol PopoverClassForFileNameDelegate;
-
-
-//@class CanvasViewController;
-
-@interface Board : UIViewController
+@interface Board : UIViewController 
 
 @end
 

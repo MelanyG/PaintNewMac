@@ -31,6 +31,7 @@
 @property(nonatomic, strong) NSMutableSet* arrayToDelete;
 @property(nonatomic, strong) UIImage* image;
 @property(nonatomic, strong) NSString* fileName;
+@property(nonatomic, strong) NSMutableArray* smoothlines;
 
 
 @end
@@ -42,7 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    self.smoothlines = [[NSMutableArray alloc]init];
     self.myArray = [[NSMutableArray alloc] init];
     self.arrayToDelete = [[NSMutableSet alloc] init];
     self.button = [UIColor blackColor];
@@ -243,14 +244,15 @@
 -(void)handlePinch:(UIPinchGestureRecognizer*) pinchGesture
 {
     NSLog(@"pinchGesture" );
-    
+    if([self.currentView isKindOfClass:[Drawer class]])
+    {
     
     if(pinchGesture.state == UIGestureRecognizerStateBegan)
     {
         self.tmpScale = 1.f;
     }
     
-    CGFloat newScale = 1.f+pinchGesture.scale-self.tmpScale;
+    CGFloat newScale = 1.0f+pinchGesture.scale-self.tmpScale;
     
     CGAffineTransform currentTransform = self.currentView.transform;
     CGAffineTransform newTransform = CGAffineTransformScale(currentTransform, newScale, newScale);
@@ -258,14 +260,15 @@
     self.currentView.transform = newTransform;
     self.tmpScale = pinchGesture.scale;
     pinchGesture.delegate=self;
-    
+    }
 }
 
 -(void)handleRotation:(UIRotationGestureRecognizer*) rotationGesture
 {
     NSLog(@"rotationGesture" );
     
-    
+    if([self.currentView isKindOfClass:[Drawer class]])
+    {
     if(rotationGesture.state == UIGestureRecognizerStateBegan)
     {
         self.tmpScale = 0;
@@ -278,7 +281,7 @@
     self.tmpRotate = rotationGesture.rotation;
     
     rotationGesture.delegate=self;
-    
+    }
 }
 
 -(void)handlePan: (UIPanGestureRecognizer*) panGesture
@@ -365,6 +368,10 @@
         CGRect frame = CGRectMake(self.start.x,
                                   self.start.y,
                                   0, 0);
+        if(self.tag == 6)
+        {
+       // self.smoothlines addObject:CGRectContainsPoint(CGRect rect, CGPoint point)
+        }
         
         self.rect = [[Drawer alloc] initWithFrame: frame
                                             shape: self.tag
@@ -376,14 +383,12 @@
         
         self.rect.translatesAutoresizingMaskIntoConstraints = NO;
         self.rect.backgroundColor = [UIColor clearColor];
+        
         [self.view addSubview:self.rect];
         [self.myArray addObject:self.rect];
         
-//        [UIView animateWithDuration:0.3
-//                         animations:^{
-//                             self.rect.transform = CGAffineTransformMakeScale(1.2f, 1.2f);
-//                             self.rect.alpha = 0.3;
-//                         }];
+        
+        
         NSLog(@"touchesBegan,%@", NSStringFromCGRect(frame));
     }
 }
@@ -392,7 +397,13 @@
 {
     if(self.mode == FALSE)
     {
-        
+        if(self.tag==6)
+        {
+            UITouch* touch = [[event allTouches] anyObject];
+            CGPoint newPoint= [touch locationInView:self.view];
+            self.stop = newPoint;
+            [self.rect setNeedsDisplay];
+        }
         
         UITouch* touch = [[event allTouches] anyObject];
         self.stop = [touch locationInView:self.view];
@@ -427,6 +438,11 @@
 //                             self.rect.transform = CGAffineTransformIdentity;
 //                             self.rect.alpha = 1.f;
 //                         }];
+        if(self.tag == 6)
+        {
+            [self.view addSubview:self.rect];
+            [self.myArray addObject:self.rect];
+        }
         
         self.rect = nil;
         NSLog(@"q-ty of elements in array: %lu", (unsigned long)[self.myArray count]);

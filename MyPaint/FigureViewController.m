@@ -23,6 +23,10 @@
     [super viewDidLoad];
 }
 
+- (IBAction)backgroundButtonSellected:(UIButton *)sender
+{
+    [self didBackgroundSelect:300.f];
+}
 
 - (IBAction)selectFigurePressed:(UIButton *)sender
 {
@@ -58,9 +62,9 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)backgroundButtonPressed:(UIButton *)sender
+-(void) didBackgroundSelect:(CGFloat)height
 {
-   //[self.Gallery setContentSize:CGSizeMake(300, 250)  animated:YES];
+    [self.delegateToBoard didBackgroundSelect: height];
     
 }
 

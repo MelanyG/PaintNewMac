@@ -81,7 +81,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    
+    [super viewWillAppear:NO];
     // ensure the values displayed are the current values
     
     self.red = 0.5;
