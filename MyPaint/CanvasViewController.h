@@ -11,7 +11,7 @@
 //#import "Board.h"
 #import "Protocols.h"
 #import "ColorPanelController.h"
-
+#import "Line.h"
 
 @interface CanvasViewController : UIViewController <FigureDelegate, ColorDelegate, UIGestureRecognizerDelegate, SaveLoadDelegate>
 

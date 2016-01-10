@@ -10,7 +10,7 @@
 
 typedef enum shapeTypes
 {
-    Line,
+    StrictLine,
     triangle,
     ellipse,
     rectangle,
@@ -28,6 +28,7 @@ typedef enum shapeTypes
 @property(nonatomic, strong) UIColor* color;
 @property(nonatomic, assign) CGFloat width;
 @property(nonatomic, strong) UIImage* image;
+@property(nonatomic, strong) NSMutableArray* smoothlines;
 
 
 
@@ -45,6 +46,7 @@ typedef enum shapeTypes
                 startLocation: (CGPoint) startTap
                   endLocation:( CGPoint) stopTap
                 selectedImage: (UIImage*) image
+                 arrayOfLines: (NSMutableArray*)smoothlines
 {
     self = [super initWithFrame:frame];
     
@@ -57,6 +59,7 @@ typedef enum shapeTypes
         self.startPoint = startTap;
         self.endPoint = stopTap;
         self.image = image;
+        self.smoothlines = smoothlines;
     }
     return self;
 }
@@ -66,7 +69,7 @@ typedef enum shapeTypes
     [super drawRect:rect];
 
     switch (self.shape) {
-        case Line:
+        case StrictLine:
             [self drawLines:rect];
               break;
         case triangle:
@@ -89,7 +92,8 @@ typedef enum shapeTypes
                            : self.image];
             break;
         case smoothLine:
-            [self drawSmoothLine:rect];
+            [self drawSmoothLine:rect
+                                :self.smoothlines];
             break;
         default:
             break;
@@ -287,7 +291,7 @@ typedef enum shapeTypes
   }
 
 -(void) drawImage: (CGRect)rect
-                 : (UIImage*) image;
+                 : (UIImage*) image
 {
 
     [image drawInRect:rect];
@@ -295,13 +299,23 @@ typedef enum shapeTypes
 }
 
 -(void) drawSmoothLine:(CGRect)rect
+                      :(NSMutableArray*)smoothlines
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
-    CGContextMoveToPoint(context, self.startPoint.x, self.endPoint.y);
-    CGContextAddLineToPoint(context, self.endPoint.x, self.endPoint.y);
+    for(int i=0; i<[self.smoothlines count]; i++)
+    {
+        Line* one = [self.smoothlines objectAtIndex: i];
+        
+        CGContextMoveToPoint(context, one.start.x, one.start.y);
+        CGContextAddLineToPoint(context, one.end.x, one.end.y);
+    }
     CGContextSetLineCap(context, kCGLineCapRound);
+    [self.color setStroke];
+    CGContextSetLineWidth(context, self.width);
+   
     CGContextStrokePath(context);
+    NSLog(@"draw line%@", NSStringFromCGRect(self.frame));
 }
 
 
@@ -314,8 +328,8 @@ typedef enum shapeTypes
 #define kWidthKey                @"Width"
 #define kImageKey                @"Image"
 #define kFrameKey                @"Frame"
-#define kBackgroundColorKey                @"BackgroundColor"
-#define kCrossLines               @"crossLines"
+#define kBackgroundColorKey      @"BackgroundColor"
+#define kCrossLines              @"crossLines"
 
 - (void) encodeWithCoder:(NSCoder *)encoder
 {

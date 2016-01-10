@@ -141,6 +141,22 @@
     self.shouldDelete = YES;
     [self.delegate didSelectDelete];
 }
+- (IBAction)lastDeletePressed:(id)sender
+{
+    self.shouldDelete = YES;
+    [self.delegate didSelectlastDelete];
+    
+}
+- (IBAction)clearAllPressed:(id)sender
+{
+    self.shouldDelete = YES;
+    [self.delegate didSelectClearAllDelete];
+    
+
+    
+}
+
+
 
 
 - (IBAction)CorrectMode:(id)sender

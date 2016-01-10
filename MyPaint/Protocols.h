@@ -39,6 +39,8 @@
 -(void) didSelectMode: (NSInteger) mode;
 -(void) didSelectSettings: (id) sender;
 -(void) didSelectDelete;
+-(void) didSelectlastDelete;
+-(void) didSelectClearAllDelete;
 
 @end
 

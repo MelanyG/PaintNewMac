@@ -32,7 +32,7 @@
 @property(nonatomic, strong) UIImage* image;
 @property(nonatomic, strong) NSString* fileName;
 @property(nonatomic, strong) NSMutableArray* smoothlines;
-
+@property(nonatomic, assign) CGPoint lastPoint;
 
 @end
 
@@ -43,7 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.smoothlines = [[NSMutableArray alloc]init];
+    //self.smoothlines = [[NSMutableArray alloc]init];
     self.myArray = [[NSMutableArray alloc] init];
     self.arrayToDelete = [[NSMutableSet alloc] init];
     self.button = [UIColor blackColor];
@@ -176,13 +176,32 @@
             {
                 [self.arrayToDelete makeObjectsPerformSelector:@selector(removeFromSuperview)];
                 [self.myArray removeObjectAtIndex:j];
-                        NSLog(@"Subview removed");
+                NSLog(@"Subview removed");
                 [self.view setNeedsDisplay];
                 NSLog(@"Object removed");
             }
         }
     }
     [self.arrayToDelete removeAllObjects];
+}
+
+-(void) didSelectlastDelete
+{
+    NSMutableSet *tmp = [[NSMutableSet alloc]initWithObjects:self.myArray[self.myArray.count-1], nil];
+    [tmp makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.myArray removeLastObject];
+    [self.view setNeedsDisplay];
+    
+}
+
+-(void) didSelectClearAllDelete
+{
+    [self.myArray removeAllObjects];
+    for (UIView *view in [self.view subviews])
+    {
+        [view removeFromSuperview];
+    }
+    [self.view setNeedsDisplay];
 }
 
 -(void)didSelectSettings: (id) sender
@@ -367,26 +386,51 @@
         
         CGRect frame = CGRectMake(self.start.x,
                                   self.start.y,
-                                  0, 0);
-        if(self.tag == 6)
+                                  0,
+                                  0);
+        if(self.tag == 7)
         {
-       // self.smoothlines addObject:CGRectContainsPoint(CGRect rect, CGPoint point)
+            self.lastPoint= self.start;
+            self.smoothlines = [[NSMutableArray alloc]init];
+            Line* one = [[Line alloc] init];
+            one.start = self.lastPoint;
+            one.end = self.lastPoint;
+           
+            [self.smoothlines addObject:one];
+            
+            self.rect.translatesAutoresizingMaskIntoConstraints = NO;
+            self.rect.backgroundColor = [UIColor clearColor];
+            self.rect = [[Drawer alloc] initWithFrame: self.view.frame
+                                                shape: self.tag
+                                                color: self.button
+                                                width: self.width
+                                        startLocation: self.start
+                                          endLocation: self.stop
+                                        selectedImage: nil
+                                         arrayOfLines: self.smoothlines];
+            self.rect.translatesAutoresizingMaskIntoConstraints = NO;
+            self.rect.backgroundColor = [UIColor clearColor];
+            
+            [self.view addSubview:self.rect];
+            [self.myArray addObject:self.rect];
         }
-        
+        else
+        {
         self.rect = [[Drawer alloc] initWithFrame: frame
                                             shape: self.tag
                                             color: self.button
                                             width: self.width
                                     startLocation: self.start
                                       endLocation: self.stop
-                                     selectedImage: self.image];
+                                    selectedImage: self.image
+                                     arrayOfLines: self.smoothlines];
         
         self.rect.translatesAutoresizingMaskIntoConstraints = NO;
         self.rect.backgroundColor = [UIColor clearColor];
-        
+       
         [self.view addSubview:self.rect];
         [self.myArray addObject:self.rect];
-        
+        }
         
         
         NSLog(@"touchesBegan,%@", NSStringFromCGRect(frame));
@@ -397,30 +441,40 @@
 {
     if(self.mode == FALSE)
     {
-        if(self.tag==6)
+        if(self.tag==7)
         {
             UITouch* touch = [[event allTouches] anyObject];
             CGPoint newPoint= [touch locationInView:self.view];
             self.stop = newPoint;
+            Line* one = [[Line alloc] init];
+            one.start = self.lastPoint;
+            one.end = newPoint;
+            self.lastPoint = newPoint;
+            [self.smoothlines addObject:one];
             [self.rect setNeedsDisplay];
+             //NSLog(@"touchesMoved,%@", NSStringFromCGRect(frame));
+            //self.rect.frame = CGRectMake(self.start.x, self.start.y, 300, 300);
+            [self.rect setNeedsDisplay];        }
+        else
+        {
+            UITouch* touch = [[event allTouches] anyObject];
+            self.stop = [touch locationInView:self.view];
+            
+            CGFloat width = self.stop.x - self.start.x;
+            CGFloat height = self.stop.y - self.start.y;
+            
+            CGFloat x = width >= 0 ? self.start.x : self.start.x + width;
+            CGFloat y = height >= 0 ? self.start.y : self.start.y + height;
+            
+            CGRect frame = CGRectMake(x, y, fabs(width), fabs(height));
+            
+            self.rect.crossLine = (width > 0 && height < 0) || (width < 0 && height > 0);
+            self.rect.frame = frame;
+            
+            [self.rect setNeedsDisplay];
+             NSLog(@"touchesMoved,%@", NSStringFromCGRect(frame));
         }
-        
-        UITouch* touch = [[event allTouches] anyObject];
-        self.stop = [touch locationInView:self.view];
-        
-        CGFloat width = self.stop.x - self.start.x;
-        CGFloat height = self.stop.y - self.start.y;
-        
-        CGFloat x = width >= 0 ? self.start.x : self.start.x + width;
-        CGFloat y = height >= 0 ? self.start.y : self.start.y + height;
-        
-        CGRect frame = CGRectMake(x, y, fabs(width), fabs(height));
-        
-        self.rect.crossLine = (width > 0 && height < 0) || (width < 0 && height > 0);
-        self.rect.frame = frame;
-        
-        [self.rect setNeedsDisplay];
-        NSLog(@"touchesMoved,%@", NSStringFromCGRect(frame));
+       
     }
 }
 
@@ -438,7 +492,7 @@
 //                             self.rect.transform = CGAffineTransformIdentity;
 //                             self.rect.alpha = 1.f;
 //                         }];
-        if(self.tag == 6)
+        if(self.tag == 7)
         {
             [self.view addSubview:self.rect];
             [self.myArray addObject:self.rect];

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Line.h"
 
 @interface Drawer : UIView <NSCoding>
 
@@ -18,7 +19,8 @@
                         width: (CGFloat) width
                 startLocation: (CGPoint)startTap
                   endLocation: (CGPoint)stopTap
-                selectedImage: (UIImage*) image;
+                selectedImage: (UIImage*) image
+                 arrayOfLines: (NSMutableArray*)smoothlines;
 
 
 
