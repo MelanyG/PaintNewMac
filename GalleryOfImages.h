@@ -10,9 +10,9 @@
 
 
 
-@interface GalleryOfImages : UIViewController
+@interface GalleryOfImages : UIViewController <UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-
+//@property(weak, nonatomic) id <BoardDelegate> delegate;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
 

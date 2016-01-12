@@ -330,6 +330,7 @@ typedef enum shapeTypes
 #define kFrameKey                @"Frame"
 #define kBackgroundColorKey      @"BackgroundColor"
 #define kCrossLines              @"crossLines"
+#define ksmoothLines             @"smoothLines"
 
 - (void) encodeWithCoder:(NSCoder *)encoder
 {
@@ -338,6 +339,8 @@ typedef enum shapeTypes
     NSValue *EndPoint = [NSValue valueWithCGPoint:self.endPoint];
     NSValue *Frame = [NSValue valueWithCGRect:self.frame];
     NSData *imageData = UIImagePNGRepresentation(self.image);
+    //self.smoothlines[0].
+    
     
     [encoder encodeBool:self.crossLine forKey:kCrossLines];
     [encoder encodeObject:StartPoint forKey:kStartPointKey];
@@ -348,6 +351,7 @@ typedef enum shapeTypes
     [encoder encodeObject:imageData forKey:kImageKey];
     [encoder encodeObject:Frame forKey:kFrameKey];
     [encoder encodeObject:self.backgroundColor forKey:kBackgroundColorKey];
+   [encoder encodeObject:self.smoothlines forKey:ksmoothLines];
     
 }
 
@@ -358,12 +362,14 @@ typedef enum shapeTypes
     {
         self.shape = [decoder decodeIntForKey:kShapeKey];
         self.width = [decoder decodeFloatForKey:kWidthKey];
+        self.smoothlines = [[decoder decodeObjectForKey:ksmoothLines]mutableCopy];
         NSData *imageData = [decoder decodeObjectForKey:kImageKey];
         self.color = [decoder decodeObjectForKey:kColorKey];
         NSValue *StartPoint = [decoder decodeObjectForKey:kStartPointKey];
         NSValue *EndPoint = [decoder decodeObjectForKey:kEndPointKey];
         NSValue *Frame = [decoder decodeObjectForKey:kFrameKey];
         UIColor* backgroundColor = [decoder decodeObjectForKey:kBackgroundColorKey];
+        
         self.crossLine = [decoder decodeBoolForKey:kCrossLines];
         
         self.startPoint = StartPoint.CGPointValue;

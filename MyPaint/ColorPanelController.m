@@ -130,11 +130,11 @@
     [self.delegate didSelectColor:self.color];
    
 }
-- (IBAction)WidthSelected:(id)sender
-{
-    self.brush=5;
-    [self.delegate didSelectWidth:self.brush];
-}
+//- (IBAction)WidthSelected:(id)sender
+//{
+//    self.brush=5;
+//    [self.delegate didSelectWidth:self.brush];
+//}
 
 - (IBAction)pressedDelete:(id)sender
 {

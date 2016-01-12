@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Line : UIViewController
+@interface Line : UIViewController <NSCoding>
 
 @property(nonatomic, assign) CGPoint start;
 @property(nonatomic, assign) CGPoint end;
 
 
+
+
 @end
+

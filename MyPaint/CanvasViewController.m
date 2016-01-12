@@ -43,7 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.smoothlines = [[NSMutableArray alloc]init];
+    self.smoothlines = [[NSMutableArray alloc]init];
     self.myArray = [[NSMutableArray alloc] init];
     self.arrayToDelete = [[NSMutableSet alloc] init];
     self.button = [UIColor blackColor];
@@ -134,10 +134,6 @@
     self.button=colorSelected;
 }
 
--(void) didSelectWidth:(CGFloat)shapeWidth
-{
-    self.width = shapeWidth;
-}
 
 -(void) didSelectImage: (UIImage*) image
                       : (NSInteger) tag
@@ -176,7 +172,7 @@
             {
                 [self.arrayToDelete makeObjectsPerformSelector:@selector(removeFromSuperview)];
                 [self.myArray removeObjectAtIndex:j];
-                NSLog(@"Subview removed");
+                        NSLog(@"Subview removed");
                 [self.view setNeedsDisplay];
                 NSLog(@"Object removed");
             }
@@ -187,21 +183,27 @@
 
 -(void) didSelectlastDelete
 {
+    if(self.myArray.count>0)
+    {
     NSMutableSet *tmp = [[NSMutableSet alloc]initWithObjects:self.myArray[self.myArray.count-1], nil];
     [tmp makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.myArray removeLastObject];
     [self.view setNeedsDisplay];
-    
+    }
+
 }
 
 -(void) didSelectClearAllDelete
 {
+    if(self.myArray.count>0)
+    {
     [self.myArray removeAllObjects];
     for (UIView *view in [self.view subviews])
     {
         [view removeFromSuperview];
     }
     [self.view setNeedsDisplay];
+    }
 }
 
 -(void)didSelectSettings: (id) sender
@@ -277,7 +279,9 @@
     CGAffineTransform newTransform = CGAffineTransformScale(currentTransform, newScale, newScale);
     
     self.currentView.transform = newTransform;
+        [self.currentView setNeedsDisplay];
     self.tmpScale = pinchGesture.scale;
+        
     pinchGesture.delegate=self;
     }
 }
@@ -288,92 +292,79 @@
     
     if([self.currentView isKindOfClass:[Drawer class]])
     {
-    if(rotationGesture.state == UIGestureRecognizerStateBegan)
-    {
-        self.tmpScale = 0;
-    }
-    
-    CGFloat newRotation=self.tmpRotate-rotationGesture.rotation;
-    CGAffineTransform currentTransform = self.currentView.transform;
-    CGAffineTransform newTransform = CGAffineTransformRotate(currentTransform, newRotation);
-    self.currentView.transform = newTransform;
-    self.tmpRotate = rotationGesture.rotation;
-    
-    rotationGesture.delegate=self;
+        if(rotationGesture.state == UIGestureRecognizerStateBegan)
+        {
+            self.tmpScale = 0;
+        }
+        
+        CGFloat newRotation=self.tmpRotate-rotationGesture.rotation;
+        CGAffineTransform currentTransform = self.currentView.transform;
+        CGAffineTransform newTransform = CGAffineTransformRotate(currentTransform, newRotation);
+        self.currentView.transform = newTransform;
+        [self.currentView setNeedsDisplay];
+        self.tmpRotate = rotationGesture.rotation;
+        
+        rotationGesture.delegate=self;
     }
 }
+
+
+
 
 -(void)handlePan: (UIPanGestureRecognizer*) panGesture
 {
     NSLog(@"panGesture" );
-    
     CGPoint location = [panGesture locationInView:self.view];
     self.currentView = [self.view hitTest:location withEvent:nil];
-    if([self.currentView isKindOfClass:[Drawer class]])
+    
+    if ([panGesture state] == UIGestureRecognizerStateBegan || [panGesture state] == UIGestureRecognizerStateChanged)
     {
-        CGPoint translation = [panGesture translationInView:self.view];
-        NSLog(@"translation,%@", NSStringFromCGPoint(translation));
-        
-        
-        
-        self.currentView.center = CGPointMake(self.currentView.center.x+translation.x,
-                                              self.currentView.center.y+translation.y);
-        
-        [panGesture setTranslation:CGPointZero inView:self.view];
-        //self.currentView.center=[panGesture locationInView:self.view];
-        
-        
-        
-        
-        
-        //            CGPoint translation = [panGesture translationInView:panGesture.self.view];
-        //
-        //            panGesture.self.view.center =
-        //           //            [panGesture setTranslation:CGPointZero inView:self.currentView];
-        //self.currentView.center=[panGesture locationInView:self.view];
-        
-        
-        
-        //    self.currentView.center = CGPointMake(panGesture.view.center.x+transition.x, panGesture.view.center.y+transition.y);
-        //     [panGesture setTranslation:CGPointZero inView:self.currentView];
-        //      self.currentView.center=[panGesture locationInView:self.view];
-        
-        
-        
-        
-        //        CGPoint translation = [panGesture translationInView:self.currentView];
-        //        panGesture.view.center = CGPointMake(panGesture.view.center.x + translation.x,
-        //                                             panGesture.view.center.y + translation.y);
-        //        [panGesture setTranslation:CGPointMake(0, 0) inView:self.currentView];
-        //        if (panGesture.state == UIGestureRecognizerStateEnded)
-        //        {
-        //
-        //            CGPoint velocity = [panGesture velocityInView:self.view];
-        //            CGFloat magnitude = sqrtf((velocity.x * velocity.x) + (velocity.y * velocity.y));
-        //            CGFloat slideMult = magnitude / 200;
-        //            NSLog(@"magnitude: %f, slideMult: %f", magnitude, slideMult);
-        //
-        //            float slideFactor = 0.1 * slideMult; // Increase for more of a slide
-        //           CGPoint finalPoint = CGPointMake(panGesture.view.center.x + (velocity.x * slideFactor),
-        //                                            panGesture.view.center.y + (velocity.y * slideFactor));
-        //           finalPoint.x = MIN(MAX(finalPoint.x, 0), self.currentView.bounds.size.width);
-        //            finalPoint.y = MIN(MAX(finalPoint.y, 0), self.currentView.bounds.size.height);
-        //
-        //
-        //                [UIView animateWithDuration:2*2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-        //                   panGesture.view.center = finalPoint;
-        //               }
-        //                                completion:nil];
-        //        }
-        
-        
-        
-        
-        panGesture.delegate = self;
+        if([self.currentView isKindOfClass:[Drawer class]])
+        {
+            
+            NSMutableSet *tmp = [[NSMutableSet alloc]initWithObjects:self.currentView, nil];
+            [tmp makeObjectsPerformSelector:@selector(removeFromSuperview)];
+            
+            [self.view addSubview:self.currentView];
+            
+            [self.view setNeedsDisplay];
+            
+            CGPoint translation = [panGesture translationInView:self.view];
+            NSLog(@"translation,%@", NSStringFromCGPoint(translation));
+            
+            self.currentView.center = CGPointMake(self.currentView.center.x+translation.x,
+                                                  self.currentView.center.y+translation.y);
+            
+            [panGesture setTranslation:CGPointZero inView:self.view];
+            //[self.currentView setNeedsDisplay];
+             panGesture.delegate = self;
+        }
+        else
+            return;
     }
-    else
+    
+    else if(panGesture.state == UIGestureRecognizerStateEnded)
+    {
+        //[self.currentView setNeedsDisplay];
+        [self.currentView bringSubviewToFront:self.view];
         return;
+    }
+    
+    
+    
+    //                [UIView animateWithDuration:2*2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    //                   panGesture.view.center = finalPoint;
+    //               }
+    //                                completion:nil];
+    //        }
+    
+    
+    
+    
+   
 }
+
+
 
 #pragma mark-Touches
 
@@ -397,25 +388,10 @@
             one.end = self.lastPoint;
            
             [self.smoothlines addObject:one];
+            frame = self.view.frame;
             
-            self.rect.translatesAutoresizingMaskIntoConstraints = NO;
-            self.rect.backgroundColor = [UIColor clearColor];
-            self.rect = [[Drawer alloc] initWithFrame: self.view.frame
-                                                shape: self.tag
-                                                color: self.button
-                                                width: self.width
-                                        startLocation: self.start
-                                          endLocation: self.stop
-                                        selectedImage: nil
-                                         arrayOfLines: self.smoothlines];
-            self.rect.translatesAutoresizingMaskIntoConstraints = NO;
-            self.rect.backgroundColor = [UIColor clearColor];
-            
-            [self.view addSubview:self.rect];
-            [self.myArray addObject:self.rect];
         }
-        else
-        {
+
         self.rect = [[Drawer alloc] initWithFrame: frame
                                             shape: self.tag
                                             color: self.button
@@ -430,7 +406,7 @@
        
         [self.view addSubview:self.rect];
         [self.myArray addObject:self.rect];
-        }
+    
         
         
         NSLog(@"touchesBegan,%@", NSStringFromCGRect(frame));
@@ -445,16 +421,15 @@
         {
             UITouch* touch = [[event allTouches] anyObject];
             CGPoint newPoint= [touch locationInView:self.view];
-            self.stop = newPoint;
+            self.start = self.lastPoint;
+            //self.stop = newPoint;
             Line* one = [[Line alloc] init];
             one.start = self.lastPoint;
             one.end = newPoint;
             self.lastPoint = newPoint;
             [self.smoothlines addObject:one];
-            [self.rect setNeedsDisplay];
-             //NSLog(@"touchesMoved,%@", NSStringFromCGRect(frame));
-            //self.rect.frame = CGRectMake(self.start.x, self.start.y, 300, 300);
-            [self.rect setNeedsDisplay];        }
+            
+        }
         else
         {
             UITouch* touch = [[event allTouches] anyObject];
@@ -471,10 +446,10 @@
             self.rect.crossLine = (width > 0 && height < 0) || (width < 0 && height > 0);
             self.rect.frame = frame;
             
-            [self.rect setNeedsDisplay];
+            
              NSLog(@"touchesMoved,%@", NSStringFromCGRect(frame));
         }
-       
+       [self.rect setNeedsDisplay];
     }
 }
 
@@ -484,21 +459,12 @@
     {
         
         [super touchesEnded:touches withEvent:event];
-        //CGRect lframe = [firstView convertRect:buttons.frame fromView:secondView];
-        NSLog(@"touchesEnded ");
+               NSLog(@"touchesEnded ");
         
-//        [UIView animateWithDuration:0.3
-//                         animations:^{
-//                             self.rect.transform = CGAffineTransformIdentity;
-//                             self.rect.alpha = 1.f;
-//                         }];
         if(self.tag == 7)
-        {
-            [self.view addSubview:self.rect];
-            [self.myArray addObject:self.rect];
-        }
-        
+            [self.view sendSubviewToBack: self.rect];
         self.rect = nil;
+        
         NSLog(@"q-ty of elements in array: %lu", (unsigned long)[self.myArray count]);
     }
 }

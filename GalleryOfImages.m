@@ -9,15 +9,21 @@
 #import "GalleryOfImages.h"
 
 @interface GalleryOfImages ()
+@property(nonatomic, strong) UIPanGestureRecognizer* panGesture;
 
 @end
 
 @implementation GalleryOfImages
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.scrollView.backgroundColor = [UIColor redColor];
+    self.panGesture=[[UIPanGestureRecognizer alloc]initWithTarget:self
+                                                           action:@selector(handlePan:)];
+    [self.view addGestureRecognizer:self.panGesture];
+    
+    
+    //self.scrollView.backgroundColor = [UIColor blackColor];
     
     NSArray *frameArray = [[NSArray alloc] initWithObjects:
                            [UIImage imageNamed:@"campus.jpg"],
@@ -40,21 +46,67 @@
     {
         UIImageView* myImageView = [[UIImageView alloc]initWithImage:frameArray[i]];
         myImageView.contentMode = UIViewContentModeScaleAspectFit;
-        
+        myImageView.userInteractionEnabled = YES;
         myImageView.frame = CGRectMake(xPosition, 5, imageWidth, imageHeight);
+        
         [self.scrollView addSubview:myImageView];
         
         CGFloat space = 5.f;
         xPosition+=imageWidth+space;
-        scrollViewControllerSize+=imageHeight+space;
+        scrollViewControllerSize=imageHeight+space*2;
         
         
-        self.scrollView.contentSize = CGSizeMake(imageWidth,scrollViewControllerSize);
-        
+        self.scrollView.contentSize = CGSizeMake(imageWidth* [frameArray count]*2,scrollViewControllerSize);
         
         
         
     }
+}
+-(void)handleDoubleTap:(UITapGestureRecognizer*) gestureTab
+{
+   if (gestureTab.state == UIGestureRecognizerStateEnded)
+    {
+        NSLog(@"Tab,%@", NSStringFromCGPoint([gestureTab locationInView:self.scrollView]));
+        CGPoint location = [gestureTab locationInView:self.scrollView];
+        UIView* currentView = [self.scrollView hitTest:location withEvent:nil];
+        if([currentView isKindOfClass:[UIImageView class]])
+        {
+                            [UIView animateWithDuration:0.3
+                                 animations:^{
+                                    currentView.transform = CGAffineTransformMakeScale(1.1f, 1.1f);
+                                    currentView.alpha = 0.5;
+                                 }
+                                 completion:nil
+                 ];
+  
+                       self.scrollView.delegate = self;
+        }
+    }
+}
+
+
+-(void) handlePan: (UIPanGestureRecognizer*) panGesture
+{
+    NSLog(@"panGesture" );
+    
+    CGPoint location = [panGesture locationInView:self.scrollView];
+    UIView* currentView = [self.view hitTest:location withEvent:nil];
+    if([currentView isKindOfClass:[UIImageView class]])
+    {
+        CGPoint translation = [panGesture translationInView:self.scrollView];
+        NSLog(@"translation,%@", NSStringFromCGPoint(translation));
+        currentView.center = CGPointMake(currentView.center.x+translation.x,
+                                              currentView.center.y+translation.y);
+        
+        [panGesture setTranslation:CGPointZero inView:self.view];
+        
+           // [self.delegate didSelectImage:sender.tag];
+ 
+        
+        self.scrollView.delegate = self;
+    }
+    else
+        return;
 }
 
 
