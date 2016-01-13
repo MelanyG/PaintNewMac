@@ -37,6 +37,6 @@
         </view>
     </objects>
     <resources>
-        <image name="forPaint.png" width="3840" height="2400"/>
+        <image name="forPaint.png" width="480" height="300"/>
     </resources>
 </document>

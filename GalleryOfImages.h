@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Protocols.h"
 
 
+@interface GalleryOfImages : UIViewController //<UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@interface GalleryOfImages : UIViewController <UIScrollViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
-
-//@property(weak, nonatomic) id <BoardDelegate> delegate;
+@property (weak, nonatomic) id <GalleryDelegate> delegate;
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
+
+
 
 
 @end

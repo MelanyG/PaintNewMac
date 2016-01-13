@@ -8,7 +8,7 @@
 
 #import "ColorPanelController.h"
 
-@protocol SettingsForColorDelegate;
+//@protocol <SettingsForColorDelegate>;
 
 @interface ColorPanelController()
 

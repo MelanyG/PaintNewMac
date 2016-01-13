@@ -238,22 +238,23 @@
         {
             if( ![self.arrayToDelete containsObject:self.currentView])
             {
+                __weak UIView* weakCurrentView = self.currentView;
                 [self.arrayToDelete addObject: self.currentView];
                 [UIView animateWithDuration:0.3
                                  animations:^{
-                                     self.currentView.transform = CGAffineTransformMakeScale(1.1f, 1.1f);
-                                     self.currentView.alpha = 0.5;
+                                     weakCurrentView.transform = CGAffineTransformMakeScale(1.1f, 1.1f);
+                                     weakCurrentView.alpha = 0.5;
                                  }
                                  completion:nil
                  ];
             }
             else if ([self.arrayToDelete containsObject:self.currentView])
             {
-                
+                __weak UIView* weakCurrentView = self.currentView;
                 [UIView animateWithDuration:0.3
                                  animations:^{
-                                     self.currentView.transform=CGAffineTransformIdentity;
-                                     self.currentView.alpha = 1.f;
+                                     weakCurrentView.transform=CGAffineTransformIdentity;
+                                     weakCurrentView.alpha = 1.f;
                                  }];
                 [self.arrayToDelete removeObject:self.currentView];
             }
@@ -422,7 +423,7 @@
             UITouch* touch = [[event allTouches] anyObject];
             CGPoint newPoint= [touch locationInView:self.view];
             self.start = self.lastPoint;
-            //self.stop = newPoint;
+            self.stop = newPoint;
             Line* one = [[Line alloc] init];
             one.start = self.lastPoint;
             one.end = newPoint;

@@ -61,6 +61,13 @@
 - (void)finishedEnteringTheFileName:(NSString*) fileName;
 
 @end
+
+@protocol GalleryDelegate
+
+- (void) didSelectImage: (UIImage*) frame;
+
+@end
+
 @protocol DismissPopoverDelegate <NSObject>
 
 - (void) dismissWithData:(NSString *)data;
