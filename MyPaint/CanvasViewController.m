@@ -34,6 +34,9 @@
 @property(nonatomic, strong) NSMutableArray* smoothlines;
 @property(nonatomic, assign) CGPoint lastPoint;
 @property(nonatomic, assign) BOOL scrollViewAppeared;
+@property(nonatomic, assign) CGFloat angleOfRotation;
+
+
 
 @end
 
@@ -106,8 +109,6 @@
 
 -(void) didSelectSaveButton: (NSString*) fileName
 {
-    //NSFileManager* fileManager = [NSFileManager defaultManager];
-    
     NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* directory = paths[0];
     self.fileName = fileName;
@@ -138,10 +139,8 @@
         [self.myArray removeAllObjects];
         
         self.myArray = [NSKeyedUnarchiver unarchiveObjectWithData:dataFromFile];
-        NSLog(@"%@", self.myArray);
         for(int i=0; i<[self.myArray count]; i++)
         {
-            
             [self.view addSubview:self.myArray[i]];
 
             [self.myArray[i] setNeedsDisplay];
@@ -326,6 +325,10 @@
         CGAffineTransform currentTransform = self.currentView.transform;
         CGAffineTransform newTransform = CGAffineTransformRotate(currentTransform, newRotation);
         self.currentView.transform = newTransform;
+        self.angleOfRotation = [(NSNumber *)[ self.currentView valueForKeyPath:@"layer.transform.rotation.z"] floatValue];
+       self.currentView.contentMode = UIViewContentModeScaleAspectFill;
+       //self.currentView.layer.anchorPoint = CGPointMake(self.angleOfRotation, self.angleOfRotation);
+        //self.currentView.transform = CGAffineTransformMakeRotation(30*M_PI/180);
         [self.currentView setNeedsDisplay];
         self.tmpRotate = rotationGesture.rotation;
         
