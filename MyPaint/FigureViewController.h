@@ -20,10 +20,20 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *imageReview;
 
+
 @property (strong, nonatomic) UIImagePickerController* picker;
 @property (nonatomic) NSInteger tag;
 @property (strong, nonatomic) IBOutlet UIButton *backgroundSelected;
 @property(nonatomic, strong) GalleryOfImages * Gallery;
+
+@property (weak, nonatomic) IBOutlet UIButton *lineButton;
+@property (weak, nonatomic) IBOutlet UIButton *triangleButton;
+@property (weak, nonatomic) IBOutlet UIButton *circleButton;
+@property (weak, nonatomic) IBOutlet UIButton *squireButton;
+@property (weak, nonatomic) IBOutlet UIButton *trapezeButton;
+@property (weak, nonatomic) IBOutlet UIButton *polygonButton;
+@property (weak, nonatomic) IBOutlet UIButton *pencilButton;
+
 
 @end
 

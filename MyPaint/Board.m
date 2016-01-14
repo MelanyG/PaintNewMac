@@ -17,7 +17,7 @@
 #import "Protocols.h"
 
 
-@interface Board ()<FigureBoardDelegate, GalleryDelegate, UIGestureRecognizerDelegate>
+@interface Board () <BoardDelegate, FigureBoardDelegate, UIGestureRecognizerDelegate>
 
 
 
@@ -31,7 +31,7 @@
 @property(weak, nonatomic) IBOutlet NSLayoutConstraint *galleryHight;
 @property(nonatomic, assign) BOOL scrollOnScreen;
 @property (strong, nonatomic) UIWindow *window;
-//@property(nonatomic, strong) UIPanGestureRecognizer* panGesture;
+@property(nonatomic, strong) UIPanGestureRecognizer* panGesture;
 
 @end
 
@@ -43,10 +43,10 @@
 {
     [super viewDidLoad];
     
-//        self.panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self
-//                                                               action:@selector(handlePan:)];
-//        [self.view addGestureRecognizer:self.panGesture];
-//    
+        self.panGesture = [[UIPanGestureRecognizer alloc]initWithTarget:self
+                                                               action:@selector(handlePan:)];
+        [self.view addGestureRecognizer:self.panGesture];
+    self.panGesture.enabled = NO;
 
     
     // Do any additional setup after loading the view, typically from a nib.
@@ -74,20 +74,46 @@
     self.SaveLoad = (SaveLoadPanelViewController *)[segue destinationViewController];
             self.SaveLoad.delegate = self.Canvas;
     }
-    else if ([segue.identifier isEqualToString:@"GallerySegue"])
-    {
-        self.Gallery = (GalleryOfImages *)[segue destinationViewController];
-          self.Gallery.delegate = self;
-    }
+//    else if ([segue.identifier isEqualToString:@"GallerySegue"])
+//    {
+//        self.Gallery = (GalleryOfImages *)[segue destinationViewController];
+//          self.Gallery.delegate = self;
+//    }
 
   
     self.Figure.delegate = self.Canvas;
     self.Figure.delegateToBoard = self;
     self.Colors.delegate = self.Canvas;
+    self.Colors.delegateBoard = self;
+}
 
-    
- 
-    
+
+-(void) didBlockButtonsOnFigurePanel: (BOOL) mode
+{
+    if (mode == FALSE)
+    {
+        self.Figure.lineButton.enabled = NO;
+        self.Figure.triangleButton.enabled = NO;
+        self.Figure.circleButton.enabled = NO;
+        self.Figure.squireButton.enabled = NO;
+        self.Figure.trapezeButton.enabled = NO;
+        self.Figure.polygonButton.enabled = NO;
+        self.Figure.pencilButton.enabled = NO;
+        self.Figure.imageReview.enabled = NO;
+   
+    }
+    if (mode == TRUE)
+    {
+        self.Figure.lineButton.enabled = YES;
+        self.Figure.triangleButton.enabled = YES;
+        self.Figure.circleButton.enabled = YES;
+        self.Figure.squireButton.enabled = YES;
+        self.Figure.trapezeButton.enabled = YES;
+        self.Figure.polygonButton.enabled = YES;
+        self.Figure.pencilButton.enabled = YES;
+        self.Figure.imageReview.enabled = YES;
+
+    }
 }
 
 -(void) didBackgroundSelect:(CGFloat)height
@@ -100,52 +126,66 @@
         [UIView animateWithDuration:0.5f animations:^{
             [self.view layoutIfNeeded];
             [self.view bringSubviewToFront:self.Gallery.scrollView];
+            self.panGesture.enabled = YES;
         }];
     }
     else
     {
         self.scrollOnScreen = 0;
         self.galleryHight.constant = 0;
+        self.panGesture.enabled = NO;
         [UIView animateWithDuration:0.5f animations:^{
             [self.view layoutIfNeeded];
         }];
     }
 }
 
-- (void) didSelectImage: (UIImage*) frame
+- (void) didSelectImage: (UIPanGestureRecognizer*) panGesture
 {
-    UIWindow *window = [[UIWindow alloc] initWithFrame:CGRectMake(50, 100, 320, 320)];
-    UIColor *background = [[UIColor alloc] initWithPatternImage:frame];
-    window.backgroundColor = background;
-    window.windowLevel = UIWindowLevelAlert;
-    self.window = window;
-    [self.window makeKeyAndVisible];
+    
+//    UIWindow *window = [[UIWindow alloc] initWithFrame:CGRectMake(sender.frame.origin.x, sender.frame.origin.y, sender.frame.size.width, sender.frame.size.height)];
+//    //UIWindowContentModeScaleToFill
+//    CGSize newsize = CGSizeMake(sender.frame.size.width, sender.frame.size.height);
+//    UIGraphicsBeginImageContextWithOptions(newsize, NO, 0.0);
+//    [sender.currentBackgroundImage drawInRect:CGRectMake(0, 0, newsize.width, newsize.height)];
+//    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+//    UIGraphicsEndImageContext();
+//    
+//    UIColor *background = [[UIColor alloc] initWithPatternImage:newImage];
+//    window.backgroundColor = background;
+//    window.windowLevel = UIWindowLevelAlert;
+//    self.window = window;
+//    self.window.hidden = NO;
+//    
+//    NSLog(@"ButtonCoordinates %@", NSStringFromCGRect(sender.frame));
+    
     
 }
 
-//-(void) handlePan: (UIPanGestureRecognizer*) panGesture
-//{
-//    NSLog(@"BoardpanGesture" );
-//
-//    CGPoint location = [panGesture locationInView:self.view];
-//    UIView* currentView = [self.view hitTest:location withEvent:nil];
-//    if([currentView isKindOfClass:[UIWindow class]])
-//    {
-//        CGPoint translation = [panGesture translationInView:self.view];
-//        NSLog(@"translation,%@", NSStringFromCGPoint(translation));
-//        currentView.center = CGPointMake(currentView.center.x+translation.x,
-//                                              currentView.center.y+translation.y);
-//
-//        [panGesture setTranslation:CGPointZero inView:self.view];
-//
-//
-//
-//
-//        panGesture.delegate = self;
-//    }
-//    else
-//        return;
-//}
+-(void) handlePan: (UIPanGestureRecognizer*) panGesture
+{
+    NSLog(@"BoardpanGesture" );
+    
+    if(self.scrollOnScreen == 0)
+    {
+       //CGPoint location = [panGesture locationInView:self.view];
+        CGPoint location1 = [panGesture locationInView:self.Gallery.scrollView];
+        UIView* currentView = [self.Gallery.scrollView hitTest:location1 withEvent:nil];
+        if([currentView isKindOfClass:[UIImageView class]])
+        { [self didSelectImage:panGesture];
+            CGPoint translation = [panGesture translationInView:self.view];
+            NSLog(@"translation,%@", NSStringFromCGPoint(translation));
+            currentView.center = CGPointMake(currentView.center.x+translation.x,
+                                             currentView.center.y+translation.y);
+            
+            [panGesture setTranslation:CGPointZero inView:self.view];
+            
+            panGesture.delegate = self;
+        }
+    }
+    else
+        return;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

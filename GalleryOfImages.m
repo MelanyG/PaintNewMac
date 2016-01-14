@@ -9,7 +9,7 @@
 #import "GalleryOfImages.h"
 
 @interface GalleryOfImages ()
-//@property(nonatomic, strong) UIPanGestureRecognizer* panGesture;
+@property(nonatomic, strong) UIPanGestureRecognizer* panGesture;
 @property (strong, nonatomic) UIWindow *window;
 
 @end
@@ -61,29 +61,13 @@
 //    }
 }
 
-- (IBAction)christmasButtonPressed:(UIButton *)sender
-{
-    UIWindow *window = [[UIWindow alloc] initWithFrame:CGRectMake(sender.frame.origin.x, sender.frame.origin.y, sender.frame.size.width, sender.frame.size.height)];
-    //UIWindowContentModeScaleToFill
-    CGSize newsize = CGSizeMake(sender.frame.size.width, sender.frame.size.height);
-    UIGraphicsBeginImageContextWithOptions(newsize, NO, 0.0);
-    [sender.currentBackgroundImage drawInRect:CGRectMake(0, 0, newsize.width, newsize.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    UIColor *background = [[UIColor alloc] initWithPatternImage:newImage];
-    window.backgroundColor = background;
-    window.windowLevel = UIWindowLevelAlert;
-    self.window = window;
-    [self.window makeKeyAndVisible];
-    
-    NSLog(@"ButtonCoordinates %@", NSStringFromCGRect(sender.frame));
-    
- [self.delegate didSelectImage:sender.currentBackgroundImage];
-    
-    
-    
-}
+//- (IBAction)christmasButtonPressed:(UIButton *)sender
+//{
+////
+//// [self.delegate didSelectImage:sender
+////                              :self.panGesture];
+////    
+//}
 
 
 //-(void)handleDoubleTap:(UITapGestureRecognizer*) gestureTab
@@ -115,18 +99,17 @@
 //    NSLog(@"panGesture" );
 //    
 //    CGPoint location = [self.panGesture locationInView:self.scrollView];
+//     NSLog(@"Scrollpan,%@", NSStringFromCGPoint(location));
 //    UIView* currentView = [self.view hitTest:location withEvent:nil];
 //    if([currentView isKindOfClass:[UIImageView class]])
 //    {
+//        currentView.userInteractionEnabled = YES;
 //        CGPoint translation = [self.panGesture translationInView:self.scrollView];
-//        NSLog(@"translation,%@", NSStringFromCGPoint(translation));
+//        //NSLog(@"translation,%@", NSStringFromCGPoint(translation));
 //        currentView.center = CGPointMake(currentView.center.x+translation.x,
 //                                              currentView.center.y+translation.y);
 //        
 //        [self.panGesture setTranslation:CGPointZero inView:self.view];
-//        
-//          
-// 
 //        
 //        self.scrollView.delegate = self;
 //    }

@@ -16,7 +16,7 @@
 @property (nonatomic, assign) CGFloat green;
 @property (nonatomic, assign) CGFloat blue;
 @property (nonatomic, assign) CGFloat width;
-@property (nonatomic, assign) NSInteger mode;
+@property (nonatomic, assign) BOOL mode;
 @property (strong, nonatomic) IBOutlet UIButton *settings;
 @property (nonatomic, assign) NSInteger selectedButtonColor;
 @property (nonatomic, assign) BOOL shouldDelete;
@@ -130,11 +130,6 @@
     [self.delegate didSelectColor:self.color];
    
 }
-//- (IBAction)WidthSelected:(id)sender
-//{
-//    self.brush=5;
-//    [self.delegate didSelectWidth:self.brush];
-//}
 
 - (IBAction)pressedDelete:(id)sender
 {
@@ -161,13 +156,15 @@
 
 - (IBAction)CorrectMode:(id)sender
 {
-    if (self.mode == 0)
+    if (self.mode == FALSE)
     {
-        self.mode++;
+        [self.delegateBoard didBlockButtonsOnFigurePanel:self.mode];
+        self.mode = TRUE;
     }
-    else if(self.mode == 1)
+    else if(self.mode == TRUE)
     {
-        self.mode = 0;
+        [self.delegateBoard didBlockButtonsOnFigurePanel:self.mode];
+        self.mode = FALSE;
     }
     [self.delegate didSelectMode:self.mode];
 }

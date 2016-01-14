@@ -11,7 +11,7 @@
 		366C72901C22D0DC006076A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C728F1C22D0DC006076A5 /* main.m */; };
 		366C72931C22D0DC006076A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C72921C22D0DC006076A5 /* AppDelegate.m */; };
 		366C72961C22D0DC006076A5 /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C72951C22D0DC006076A5 /* Board.m */; };
-		366C72991C22D0DD006076A5 /* storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 366C72971C22D0DD006076A5 /* storyboard.storyboard */; };
+		366C72991C22D0DD006076A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 366C72971C22D0DD006076A5 /* Main.storyboard */; };
 		366C729B1C22D0DD006076A5 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 366C729A1C22D0DD006076A5 /* Images.xcassets */; };
 		366C729E1C22D0DD006076A5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366C729C1C22D0DD006076A5 /* LaunchScreen.xib */; };
 		366C72AA1C22D0DD006076A5 /* MyPaintTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 366C72A91C22D0DD006076A5 /* MyPaintTests.m */; };
@@ -38,6 +38,7 @@
 		4084E57A1C3AC1A300D84AD7 /* PopoverClassForFileName.m in Sources */ = {isa = PBXBuildFile; fileRef = 4084E5791C3AC1A200D84AD7 /* PopoverClassForFileName.m */; };
 		4084E5841C3D292B00D84AD7 /* GalleryOfImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 4084E5831C3D292B00D84AD7 /* GalleryOfImages.m */; };
 		40EC3B0C1C450384002A0BED /* ok.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EC3B0B1C450384002A0BED /* ok.png */; };
+		40EC3B0E1C47BF2F002A0BED /* trapeze.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EC3B0D1C47BF2F002A0BED /* trapeze.png */; };
 		40EDE6501C3D4FFB00F3AF32 /* Bears.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE64F1C3D4FFB00F3AF32 /* Bears.png */; };
 		40EDE6521C3D500100F3AF32 /* Christmas.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE6511C3D500100F3AF32 /* Christmas.png */; };
 		40EDE6541C3D500800F3AF32 /* Snowflakes.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE6531C3D500800F3AF32 /* Snowflakes.png */; };
@@ -86,7 +87,7 @@
 		366C72921C22D0DC006076A5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		366C72941C22D0DC006076A5 /* Board.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
 		366C72951C22D0DC006076A5 /* Board.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Board.m; sourceTree = "<group>"; };
-		366C72981C22D0DD006076A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/storyboard.storyboard; sourceTree = "<group>"; };
+		366C72981C22D0DD006076A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		366C729A1C22D0DD006076A5 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		366C729D1C22D0DD006076A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		366C72A31C22D0DD006076A5 /* MyPaintTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyPaintTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +125,7 @@
 		4084E5821C3D292B00D84AD7 /* GalleryOfImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GalleryOfImages.h; path = ../GalleryOfImages.h; sourceTree = "<group>"; };
 		4084E5831C3D292B00D84AD7 /* GalleryOfImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GalleryOfImages.m; path = ../GalleryOfImages.m; sourceTree = "<group>"; };
 		40EC3B0B1C450384002A0BED /* ok.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ok.png; sourceTree = "<group>"; };
+		40EC3B0D1C47BF2F002A0BED /* trapeze.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trapeze.png; sourceTree = "<group>"; };
 		40EDE64F1C3D4FFB00F3AF32 /* Bears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bears.png; sourceTree = "<group>"; };
 		40EDE6511C3D500100F3AF32 /* Christmas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Christmas.png; sourceTree = "<group>"; };
 		40EDE6531C3D500800F3AF32 /* Snowflakes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Snowflakes.png; sourceTree = "<group>"; };
@@ -195,7 +197,7 @@
 				36DCD6131C29814600BF4709 /* Graphics */,
 				366C72911C22D0DC006076A5 /* AppDelegate.h */,
 				366C72921C22D0DC006076A5 /* AppDelegate.m */,
-				366C72971C22D0DD006076A5 /* storyboard.storyboard */,
+				366C72971C22D0DD006076A5 /* Main.storyboard */,
 				4084E5781C3AC1A200D84AD7 /* PopoverClassForFileName.h */,
 				4084E5791C3AC1A200D84AD7 /* PopoverClassForFileName.m */,
 				40EDE6B41C4278AB00F3AF32 /* Line.h */,
@@ -264,6 +266,7 @@
 		36DCD6131C29814600BF4709 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				40EC3B0D1C47BF2F002A0BED /* trapeze.png */,
 				40EC3B0B1C450384002A0BED /* ok.png */,
 				40EDE7281C43D85400F3AF32 /* mode.png */,
 				40EDE71E1C43D3D400F3AF32 /* circle.png */,
@@ -390,7 +393,7 @@
 				36DCD6351C29814600BF4709 /* LightGreen.png in Resources */,
 				36DCD6331C29814600BF4709 /* Grey.png in Resources */,
 				3676C4181C30664B00A27CD9 /* LaunchImages.xcassets in Resources */,
-				366C72991C22D0DD006076A5 /* storyboard.storyboard in Resources */,
+				366C72991C22D0DD006076A5 /* Main.storyboard in Resources */,
 				36DCD62B1C29814600BF4709 /* Black.png in Resources */,
 				40EDE71A1C43B12100F3AF32 /* save.png in Resources */,
 				4084E5741C34216A00D84AD7 /* forPaint.png in Resources */,
@@ -420,6 +423,7 @@
 				40EDE7141C43B12100F3AF32 /* six.png in Resources */,
 				366C729B1C22D0DD006076A5 /* Images.xcassets in Resources */,
 				40EDE6B31C416E8200F3AF32 /* Mickey.png in Resources */,
+				40EC3B0E1C47BF2F002A0BED /* trapeze.png in Resources */,
 				36DCD6341C29814600BF4709 /* LightBlue.png in Resources */,
 				40EDE7111C43B12100F3AF32 /* line.png in Resources */,
 				36DCD6381C29814600BF4709 /* Red.png in Resources */,
@@ -482,12 +486,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		366C72971C22D0DD006076A5 /* storyboard.storyboard */ = {
+		366C72971C22D0DD006076A5 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				366C72981C22D0DD006076A5 /* Base */,
 			);
-			name = storyboard.storyboard;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		366C729C1C22D0DD006076A5 /* LaunchScreen.xib */ = {

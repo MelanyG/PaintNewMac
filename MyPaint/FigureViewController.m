@@ -11,6 +11,8 @@
 @interface FigureViewController ()
 
 
+@property (assign, nonatomic) BOOL scrollViewPressed;
+
 
 @end
 
@@ -25,7 +27,33 @@
 
 - (IBAction)backgroundButtonSellected:(UIButton *)sender
 {
+    if(self.scrollViewPressed == 0)
+    {
+        self.lineButton.enabled = NO;
+        self.triangleButton.enabled = NO;
+        self.circleButton.enabled = NO;
+        self.squireButton.enabled = NO;
+        self.trapezeButton.enabled = NO;
+        self.polygonButton.enabled = NO;
+        self.pencilButton.enabled = NO;
+        self.imageReview.enabled = NO;
+        self.scrollViewPressed = 1;
+    }
+    else
+    {
+        self.lineButton.enabled = YES;
+        self.triangleButton.enabled = YES;
+        self.circleButton.enabled = YES;
+        self.squireButton.enabled = YES;
+        self.trapezeButton.enabled = YES;
+        self.polygonButton.enabled = YES;
+        self.imageReview.enabled = YES;
+        self.pencilButton.enabled = YES;
+        self.scrollViewPressed = 0;
+    }
+    
     [self didBackgroundSelect:300.f];
+    [self.delegate didDisableGestures];
 }
 
 - (IBAction)selectFigurePressed:(UIButton *)sender

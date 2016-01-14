@@ -19,7 +19,8 @@
 
 
 
-@property (nonatomic, weak) id delegate;
+@property (nonatomic, weak) id <ColorDelegate> delegate;
+@property (nonatomic, weak) id <BoardDelegate> delegateBoard;
 @property (nonatomic, strong) UIColor* color;
 @property (nonatomic, assign) CGFloat brush;
 @property (nonatomic, assign) CGFloat opacity;

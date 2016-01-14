@@ -33,6 +33,7 @@
 @property(nonatomic, strong) NSString* fileName;
 @property(nonatomic, strong) NSMutableArray* smoothlines;
 @property(nonatomic, assign) CGPoint lastPoint;
+@property(nonatomic, assign) BOOL scrollViewAppeared;
 
 @end
 
@@ -80,6 +81,27 @@
 -(void) didSelectFigure:(NSInteger) tag
 {
     self.tag=tag;
+}
+
+-(void) didDisableGestures
+{
+    if(self.scrollViewAppeared==NO )
+    {
+       if(self.mode ==YES)
+        {
+           [self didSelectMode:NO];
+            self.mode = YES;
+        }
+        
+        self.scrollViewAppeared = YES;
+    }
+    else if(self.scrollViewAppeared==YES )
+    {
+        [self didSelectMode:self.mode];
+
+        self.scrollViewAppeared = NO;
+    }
+    
 }
 
 -(void) didSelectSaveButton: (NSString*) fileName
@@ -142,22 +164,24 @@
     self.tag = tag;
 }
 
--(void) didSelectMode: (NSInteger) mode
+-(void) didSelectMode: (BOOL) mode
 {
     self.mode = mode;
-    if(mode == 0)
+    if(mode == FALSE )
     {
         self.gestureTab.enabled = NO;
         self.pinchGesture.enabled = NO;
         self.panGesture.enabled = NO;
         self.rotationGesture.enabled = NO;
+       
     }
-    else if(mode == 1)
+    else if(mode == TRUE )
     {
         self.gestureTab.enabled = YES;
         self.pinchGesture.enabled = YES;
         self.panGesture.enabled = YES;
         self.rotationGesture.enabled = YES;
+        
     }
 }
 
@@ -371,46 +395,49 @@
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if(self.mode == FALSE)
+    if(self.scrollViewAppeared ==0)
     {
-        UITouch* touch = [[event allTouches] anyObject];
-        self.start = [touch locationInView:self.view];
-        
-        CGRect frame = CGRectMake(self.start.x,
-                                  self.start.y,
-                                  0,
-                                  0);
-        if(self.tag == 7)
+        if(self.mode == FALSE)
         {
-            self.lastPoint= self.start;
-            self.smoothlines = [[NSMutableArray alloc]init];
-            Line* one = [[Line alloc] init];
-            one.start = self.lastPoint;
-            one.end = self.lastPoint;
-           
-            [self.smoothlines addObject:one];
-            frame = self.view.frame;
+            UITouch* touch = [[event allTouches] anyObject];
+            self.start = [touch locationInView:self.view];
             
+            CGRect frame = CGRectMake(self.start.x,
+                                      self.start.y,
+                                      0,
+                                      0);
+            if(self.tag == 7)
+            {
+                self.lastPoint= self.start;
+                self.smoothlines = [[NSMutableArray alloc]init];
+                Line* one = [[Line alloc] init];
+                one.start = self.lastPoint;
+                one.end = self.lastPoint;
+                
+                [self.smoothlines addObject:one];
+                frame = self.view.frame;
+                
+            }
+            
+            self.rect = [[Drawer alloc] initWithFrame: frame
+                                                shape: self.tag
+                                                color: self.button
+                                                width: self.width
+                                        startLocation: self.start
+                                          endLocation: self.stop
+                                        selectedImage: self.image
+                                         arrayOfLines: self.smoothlines];
+            
+            self.rect.translatesAutoresizingMaskIntoConstraints = NO;
+            self.rect.backgroundColor = [UIColor clearColor];
+            
+            [self.view addSubview:self.rect];
+            [self.myArray addObject:self.rect];
+            
+            
+            
+            NSLog(@"touchesBegan,%@", NSStringFromCGRect(frame));
         }
-
-        self.rect = [[Drawer alloc] initWithFrame: frame
-                                            shape: self.tag
-                                            color: self.button
-                                            width: self.width
-                                    startLocation: self.start
-                                      endLocation: self.stop
-                                    selectedImage: self.image
-                                     arrayOfLines: self.smoothlines];
-        
-        self.rect.translatesAutoresizingMaskIntoConstraints = NO;
-        self.rect.backgroundColor = [UIColor clearColor];
-       
-        [self.view addSubview:self.rect];
-        [self.myArray addObject:self.rect];
-    
-        
-        
-        NSLog(@"touchesBegan,%@", NSStringFromCGRect(frame));
     }
 }
 
@@ -472,10 +499,13 @@
 
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if(self.mode == FALSE)
+    if(self.scrollViewAppeared == 0)
     {
-        self.rect = nil;
-        NSLog(@"touchesCancelled");
+        if(self.mode == FALSE)
+        {
+            self.rect = nil;
+            NSLog(@"touchesCancelled");
+        }
     }
 }
 

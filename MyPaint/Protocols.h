@@ -19,6 +19,7 @@
 -(void) didSelectFigure:(NSInteger)tag;
 -(void) didSelectImage: (UIImage*) image
                       : (NSInteger) tag;
+-(void) didDisableGestures;
 
 
 @end
@@ -33,14 +34,20 @@
 
 @required
 
-
 -(void) didSelectColor:(UIColor*)button;
-//-(void) didSelectWidth:(CGFloat)shapeWidth;
--(void) didSelectMode: (NSInteger) mode;
+-(void) didSelectMode: (BOOL) mode;
 -(void) didSelectSettings: (id) sender;
 -(void) didSelectDelete;
 -(void) didSelectlastDelete;
 -(void) didSelectClearAllDelete;
+
+@end
+
+@protocol BoardDelegate <NSObject>
+
+@required
+
+-(void) didBlockButtonsOnFigurePanel: (BOOL) mode;
 
 @end
 
@@ -62,11 +69,12 @@
 
 @end
 
-@protocol GalleryDelegate
-
-- (void) didSelectImage: (UIImage*) frame;
-
-@end
+//@protocol GalleryDelegate
+//
+//- (void) didSelectImage: (UIButton*) sender
+//                       : (UIPanGestureRecognizer*) panGesture;
+//
+//@end
 
 @protocol DismissPopoverDelegate <NSObject>
 
