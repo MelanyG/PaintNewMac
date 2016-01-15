@@ -63,7 +63,7 @@
 		40EDE7241C43D3D400F3AF32 /* frame.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE71F1C43D3D400F3AF32 /* frame.png */; };
 		40EDE7251C43D3D400F3AF32 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE7201C43D3D400F3AF32 /* image.png */; };
 		40EDE7261C43D3D400F3AF32 /* set.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE7211C43D3D400F3AF32 /* set.png */; };
-		40EDE7271C43D3D400F3AF32 /* triangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE7221C43D3D400F3AF32 /* triangle.png */; };
+		40EDE7271C43D3D400F3AF32 /* trianglebro.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE7221C43D3D400F3AF32 /* trianglebro.png */; };
 		40EDE7291C43D85400F3AF32 /* mode.png in Resources */ = {isa = PBXBuildFile; fileRef = 40EDE7281C43D85400F3AF32 /* mode.png */; };
 /* End PBXBuildFile section */
 
@@ -151,7 +151,7 @@
 		40EDE71F1C43D3D400F3AF32 /* frame.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = frame.png; sourceTree = "<group>"; };
 		40EDE7201C43D3D400F3AF32 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		40EDE7211C43D3D400F3AF32 /* set.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = set.png; sourceTree = "<group>"; };
-		40EDE7221C43D3D400F3AF32 /* triangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = triangle.png; sourceTree = "<group>"; };
+		40EDE7221C43D3D400F3AF32 /* trianglebro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trianglebro.png; sourceTree = "<group>"; };
 		40EDE7281C43D85400F3AF32 /* mode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mode.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -274,7 +274,7 @@
 				40EDE71F1C43D3D400F3AF32 /* frame.png */,
 				40EDE7201C43D3D400F3AF32 /* image.png */,
 				40EDE7211C43D3D400F3AF32 /* set.png */,
-				40EDE7221C43D3D400F3AF32 /* triangle.png */,
+				40EDE7221C43D3D400F3AF32 /* trianglebro.png */,
 				40EDE7061C43B12100F3AF32 /* line.png */,
 				40EDE7071C43B12100F3AF32 /* pencil.png */,
 				40EDE7081C43B12100F3AF32 /* dellastone.png */,
@@ -411,7 +411,7 @@
 				40EDE6A11C40324800F3AF32 /* t.jpg in Resources */,
 				36DCD62F1C29814600BF4709 /* DarkGreen.png in Resources */,
 				40EDE7241C43D3D400F3AF32 /* frame.png in Resources */,
-				40EDE7271C43D3D400F3AF32 /* triangle.png in Resources */,
+				40EDE7271C43D3D400F3AF32 /* trianglebro.png in Resources */,
 				40EDE7131C43B12100F3AF32 /* dellastone.png in Resources */,
 				36DCD62C1C29814600BF4709 /* Blue.png in Resources */,
 				36DCD62D1C29814600BF4709 /* Brown.png in Resources */,
