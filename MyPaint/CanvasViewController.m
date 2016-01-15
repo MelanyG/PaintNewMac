@@ -327,10 +327,8 @@
         self.currentView.transform = newTransform;
         self.angleOfRotation = [(NSNumber *)[ self.currentView valueForKeyPath:@"layer.transform.rotation.z"] floatValue];
        self.currentView.contentMode = UIViewContentModeScaleAspectFill;
-       //self.currentView.layer.anchorPoint = CGPointMake(self.angleOfRotation, self.angleOfRotation);
-        //self.currentView.transform = CGAffineTransformMakeRotation(30*M_PI/180);
-        [self.currentView setNeedsDisplay];
-        self.tmpRotate = rotationGesture.rotation;
+       [self.currentView setNeedsDisplay];
+       self.tmpRotate = rotationGesture.rotation;
         
         rotationGesture.delegate=self;
     }
@@ -364,8 +362,7 @@
                                                   self.currentView.center.y+translation.y);
             
             [panGesture setTranslation:CGPointZero inView:self.view];
-            //[self.currentView setNeedsDisplay];
-             panGesture.delegate = self;
+              panGesture.delegate = self;
         }
         else
             return;
@@ -373,23 +370,10 @@
     
     else if(panGesture.state == UIGestureRecognizerStateEnded)
     {
-        //[self.currentView setNeedsDisplay];
         [self.currentView bringSubviewToFront:self.view];
         return;
     }
-    
-    
-    
-    //                [UIView animateWithDuration:2*2 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-    //                   panGesture.view.center = finalPoint;
-    //               }
-    //                                completion:nil];
-    //        }
-    
-    
-    
-    
-   
+
 }
 
 

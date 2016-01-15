@@ -13,8 +13,5 @@
 @property(nonatomic, assign) CGPoint start;
 @property(nonatomic, assign) CGPoint end;
 
-
-
-
 @end
 

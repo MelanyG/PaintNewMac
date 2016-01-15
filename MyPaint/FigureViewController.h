@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import "Board.h"
 #import "Protocols.h"
 #import "GalleryOfImages.h"
 

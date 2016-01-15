@@ -74,11 +74,6 @@
     self.SaveLoad = (SaveLoadPanelViewController *)[segue destinationViewController];
             self.SaveLoad.delegate = self.Canvas;
     }
-//    else if ([segue.identifier isEqualToString:@"GallerySegue"])
-//    {
-//        self.Gallery = (GalleryOfImages *)[segue destinationViewController];
-//          self.Gallery.delegate = self;
-//    }
 
   
     self.Figure.delegate = self.Canvas;

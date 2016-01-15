@@ -278,13 +278,13 @@ typedef enum shapeTypes
     NSValue *EndPoint = [NSValue valueWithCGPoint:self.endPoint];
     NSValue *Frame = [NSValue valueWithCGRect:self.frame];
     NSData *imageData = UIImagePNGRepresentation(self.image);
-    //self.smoothlines[0].
+    
     
     
     [encoder encodeBool:self.crossLine forKey:kCrossLines];
     [encoder encodeObject:StartPoint forKey:kStartPointKey];
     [encoder encodeObject:EndPoint forKey:kEndPointKey];
-    [encoder encodeInt:self.shape forKey:kShapeKey];
+    [encoder encodeInteger:self.shape forKey:kShapeKey];
     [encoder encodeObject:self.color forKey:kColorKey];
     [encoder encodeFloat:self.width forKey:kWidthKey];
     [encoder encodeObject:imageData forKey:kImageKey];
