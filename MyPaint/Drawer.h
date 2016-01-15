@@ -11,7 +11,12 @@
 
 @interface Drawer : UIView <NSCoding>
 
+
 @property (nonatomic, assign) BOOL crossLine;
+@property(nonatomic, assign) CGFloat angleOfRotation;
+@property (nonatomic, assign) CGRect frameBeforeRotation;
+@property (nonatomic, assign) BOOL wasRotated;
+
 
 - (instancetype)initWithFrame: (CGRect)frame
                         shape: (NSInteger)shape
@@ -21,6 +26,7 @@
                   endLocation: (CGPoint)stopTap
                 selectedImage: (UIImage*) image
                  arrayOfLines: (NSMutableArray*)smoothlines;
+
 
 
 

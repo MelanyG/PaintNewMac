@@ -34,7 +34,8 @@
 @property(nonatomic, strong) NSMutableArray* smoothlines;
 @property(nonatomic, assign) CGPoint lastPoint;
 @property(nonatomic, assign) BOOL scrollViewAppeared;
-@property(nonatomic, assign) CGFloat angleOfRotation;
+
+
 
 
 
@@ -56,7 +57,7 @@
                                                              action:@selector(handleDoubleTap:) ];
     [self.view addGestureRecognizer: self.gestureTab];
     self.gestureTab.numberOfTapsRequired=2;
-    
+   
     
     self.pinchGesture=[[UIPinchGestureRecognizer alloc]initWithTarget:self
                                                                action:@selector(handlePinch:)];
@@ -113,11 +114,9 @@
     NSString* directory = paths[0];
     self.fileName = fileName;
     NSString* dataFile = [directory stringByAppendingPathComponent:self.fileName];
-    
-    
-    NSLog(@"%@", self.myArray);
+ 
     NSData* data = [NSKeyedArchiver archivedDataWithRootObject: self.myArray];
-    NSLog(@"%@", data);
+ 
   
     [data writeToFile:dataFile atomically:YES];
      
@@ -291,48 +290,79 @@
     NSLog(@"pinchGesture" );
     if([self.currentView isKindOfClass:[Drawer class]])
     {
-    
-    if(pinchGesture.state == UIGestureRecognizerStateBegan)
-    {
-        self.tmpScale = 1.f;
-    }
-    
-    CGFloat newScale = 1.0f+pinchGesture.scale-self.tmpScale;
-    
-    CGAffineTransform currentTransform = self.currentView.transform;
-    CGAffineTransform newTransform = CGAffineTransformScale(currentTransform, newScale, newScale);
-    
-    self.currentView.transform = newTransform;
-        [self.currentView setNeedsDisplay];
-    self.tmpScale = pinchGesture.scale;
         
-    pinchGesture.delegate=self;
+        if(pinchGesture.state == UIGestureRecognizerStateBegan)
+        {
+            self.tmpScale = 1.f;
+        }
+        
+        CGFloat newScale = 1.0f+pinchGesture.scale-self.tmpScale;
+        
+        CGAffineTransform currentTransform = self.currentView.transform;
+        CGAffineTransform newTransform = CGAffineTransformScale(currentTransform, newScale, newScale);
+        
+        self.currentView.transform = newTransform;
+        [self.currentView setNeedsDisplay];
+        self.tmpScale = pinchGesture.scale;
+        
+        pinchGesture.delegate=self;
     }
 }
 
 -(void)handleRotation:(UIRotationGestureRecognizer*) rotationGesture
 {
+    CGFloat angleOfRotation = 0.0;
     NSLog(@"rotationGesture" );
+    CGPoint location = [rotationGesture locationInView:rotationGesture.view];
+    self.currentView = [rotationGesture.view hitTest:location withEvent:nil];
+    Drawer* rotatedView = (Drawer*) self.currentView;
     
-    if([self.currentView isKindOfClass:[Drawer class]])
+    if(self.currentView  != self.view)
     {
-        if(rotationGesture.state == UIGestureRecognizerStateBegan)
+        if(rotatedView.wasRotated == NO)
         {
-            self.tmpScale = 0;
+            rotatedView.frameBeforeRotation = rotatedView.frame;
+            rotatedView.wasRotated = YES;
         }
         
-        CGFloat newRotation=self.tmpRotate-rotationGesture.rotation;
-        CGAffineTransform currentTransform = self.currentView.transform;
-        CGAffineTransform newTransform = CGAffineTransformRotate(currentTransform, newRotation);
-        self.currentView.transform = newTransform;
-        self.angleOfRotation = [(NSNumber *)[ self.currentView valueForKeyPath:@"layer.transform.rotation.z"] floatValue];
-       self.currentView.contentMode = UIViewContentModeScaleAspectFill;
-       [self.currentView setNeedsDisplay];
-       self.tmpRotate = rotationGesture.rotation;
+        [self.myArray removeObject:self.currentView];
+        angleOfRotation = rotationGesture.rotation;
+        CGAffineTransform currentTransform = CGAffineTransformMakeRotation(angleOfRotation);
+        self.currentView.transform = currentTransform;
+        rotatedView.angleOfRotation = angleOfRotation;
+    }
+    
+     
+        [self.myArray addObject:rotatedView];
+       [rotatedView setNeedsDisplay];
         
         rotationGesture.delegate=self;
-    }
+   
+    
+    
+//    if([self.currentView isKindOfClass:[Drawer class]])
+//    {
+//        if(rotationGesture.state == UIGestureRecognizerStateBegan)
+//        {
+//            self.tmpScale = 0;
+//        }
+//        
+//        CGFloat newRotation=self.tmpRotate-rotationGesture.rotation;
+//        CGAffineTransform currentTransform = self.currentView.transform;
+//        CGAffineTransform newTransform = CGAffineTransformRotate(currentTransform, newRotation);
+//        self.currentView.transform = newTransform;
+//        //angleOfRotation = [(NSNumber *)[ self.currentView valueForKeyPath:@"layer.transform.rotation.z"] floatValue];
+//        self.currentView.contentMode = UIViewContentModeScaleAspectFill;
+//        [self.currentView setNeedsDisplay];
+//        self.tmpRotate = rotationGesture.rotation;
+//        
+//        rotationGesture.delegate=self;
+//    }
+    
+    
 }
+
+
 
 
 

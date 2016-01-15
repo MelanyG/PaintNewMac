@@ -44,9 +44,10 @@ typedef enum shapeTypes
                         color: (UIColor*) color
                         width: (CGFloat) width
                 startLocation: (CGPoint) startTap
-                  endLocation:( CGPoint) stopTap
+                  endLocation: (CGPoint) stopTap
                 selectedImage: (UIImage*) image
                  arrayOfLines: (NSMutableArray*)smoothlines
+
 {
     self = [super initWithFrame:frame];
     
@@ -60,6 +61,7 @@ typedef enum shapeTypes
         self.endPoint = stopTap;
         self.image = image;
         self.smoothlines = smoothlines;
+        self.wasRotated = NO;
     }
     return self;
 }
@@ -205,6 +207,60 @@ typedef enum shapeTypes
 
 -(void) drawPolygon:(CGRect)rect
 {
+    
+//    CGRect insetRect = CGRectMake(rect.origin.x + inset, rect.origin.y + inset, rect.size.width - inset, rect.size.height - inset);
+//    
+//    CGFloat side = (insetRect.size.width/2);
+//    CGPoint newZeroCoordinate = CGPointMake(insetRect.size.width/2, insetRect.size.height/2);
+//    NSInteger numOfSides = 6;
+//    CGFloat alpha;
+//    
+//    CGContextRef ctx = UIGraphicsGetCurrentContext();
+//    CGContextSetLineCap(ctx, kCGLineCapRound);
+//    CGContextSetLineJoin(ctx, kCGLineJoinRound);
+//    CGContextSetLineWidth(ctx, self.width);
+//    CGContextSetStrokeColorWithColor(ctx, [self.color CGColor]);
+//    
+//    for (int i = 0; i <= numOfSides; i++)
+//    {
+//        alpha = 2*M_PI*i/numOfSides;
+//        CGPoint p = CGPointMake(side*cos(alpha)+newZeroCoordinate.x, side*sin(alpha)+newZeroCoordinate.y);
+//        if(i == 0)
+//        {
+//            if (!isnan(p.x) && !isnan(p.y))
+//            {
+//                CGContextMoveToPoint(ctx, p.x, p.y);
+//            }
+//        }
+//        else
+//            CGContextAddLineToPoint(ctx, p.x, p.y);
+//    }
+//    CGContextStrokePath(ctx);
+    
+    
+//    CGFloat inset = self.width/2;
+//    CGContextRef context = UIGraphicsGetCurrentContext();
+//    CGContextSetLineCap(context, kCGLineCapRound);
+//    CGContextSetLineJoin(context, kCGLineJoinRound);
+//    CGContextSetLineWidth(context, self.width);
+//    CGContextSetStrokeColorWithColor(context, [self.color CGColor]);
+//    CGRect nRect = CGRectMake(rect.origin.x + inset, rect.origin.y + inset, rect.size.width - inset, rect.size.height - inset);
+//    
+//    NSLog(@"%f%f", self.startPoint.x, self.startPoint.y);
+//    
+//    double R = nRect.size.width/2.f;
+//    CGContextMoveToPoint(context, self.startPoint.x + R*cos(M_PI*0/180)+R, self.startPoint.y + R*sin(M_PI*0/180)+R);
+//    double k = 0;
+//    double n = 5.f;
+//    while (k < n+1)
+//    {
+//        double alpha = (360.f / n) * k;
+//        CGContextAddLineToPoint(context, self.startPoint.x + R*cos(M_PI*alpha/180)+R, self.startPoint.y + R*sin(M_PI*alpha/180)+R);
+//        k++;
+//    }
+//CGContextStrokePath(context);
+    
+    
     rect.size.width-=self.width;
     rect.size.height-=self.width;
     rect.origin.x+=self.width;
@@ -220,7 +276,6 @@ typedef enum shapeTypes
     [aPath addLineToPoint:CGPointMake((rect.size.width/3), rect.size.height)];
     [aPath addLineToPoint:CGPointMake((self.width), (rect.size.height/3)*2)];
     [aPath addLineToPoint:CGPointMake((self.width), (rect.size.height/3))];
-  
     
     [aPath closePath];
     aPath.lineWidth = self.width;
@@ -270,6 +325,9 @@ typedef enum shapeTypes
 #define kBackgroundColorKey      @"BackgroundColor"
 #define kCrossLines              @"crossLines"
 #define ksmoothLines             @"smoothLines"
+#define krotationAngle           @"rotationAngle"
+#define kframeBeforeRotation     @"frameBeforeRotation"
+
 
 - (void) encodeWithCoder:(NSCoder *)encoder
 {
@@ -278,9 +336,10 @@ typedef enum shapeTypes
     NSValue *EndPoint = [NSValue valueWithCGPoint:self.endPoint];
     NSValue *Frame = [NSValue valueWithCGRect:self.frame];
     NSData *imageData = UIImagePNGRepresentation(self.image);
+  
     
-    
-    
+    [encoder encodeObject: [NSValue valueWithCGRect:self.frameBeforeRotation] forKey:kframeBeforeRotation];
+    [encoder encodeObject: [NSNumber numberWithFloat:self.angleOfRotation] forKey:krotationAngle];
     [encoder encodeBool:self.crossLine forKey:kCrossLines];
     [encoder encodeObject:StartPoint forKey:kStartPointKey];
     [encoder encodeObject:EndPoint forKey:kEndPointKey];
@@ -299,6 +358,22 @@ typedef enum shapeTypes
     self = [super init];
     if(self)
     {
+        self.angleOfRotation = [[decoder decodeObjectForKey:krotationAngle]floatValue];
+        
+       if( self.angleOfRotation)
+        {
+            self.frameBeforeRotation = [[decoder decodeObjectForKey:kframeBeforeRotation] CGRectValue];
+            self.frame = self.frameBeforeRotation;
+            CGAffineTransform transform = CGAffineTransformMakeRotation(self.angleOfRotation);
+            self.transform = transform;
+          
+        }
+        else
+        {
+            NSValue *Frame = [decoder decodeObjectForKey:kFrameKey];
+            self.frame = Frame.CGRectValue;
+        }
+        
         self.shape = [decoder decodeIntForKey:kShapeKey];
         self.width = [decoder decodeFloatForKey:kWidthKey];
         self.smoothlines = [[decoder decodeObjectForKey:ksmoothLines]mutableCopy];
@@ -306,16 +381,12 @@ typedef enum shapeTypes
         self.color = [decoder decodeObjectForKey:kColorKey];
         NSValue *StartPoint = [decoder decodeObjectForKey:kStartPointKey];
         NSValue *EndPoint = [decoder decodeObjectForKey:kEndPointKey];
-        NSValue *Frame = [decoder decodeObjectForKey:kFrameKey];
-        UIColor* backgroundColor = [decoder decodeObjectForKey:kBackgroundColorKey];
-        
+        self.backgroundColor = [decoder decodeObjectForKey:kBackgroundColorKey];
         self.crossLine = [decoder decodeBoolForKey:kCrossLines];
-        
         self.startPoint = StartPoint.CGPointValue;
         self.endPoint = EndPoint.CGPointValue;
-        self.frame = Frame.CGRectValue;
         self.image = [[UIImage alloc] initWithData:imageData];
-        self.backgroundColor = backgroundColor;
+        
         
     }
     return self;
