@@ -20,6 +20,8 @@
 @property (nonatomic, assign) NSInteger selectedButtonColor;
 @property (nonatomic, assign) BOOL shouldDelete;
 @property (nonatomic, assign) NSInteger alreadySelectedColor;
+@property (strong, nonatomic) UIPopoverController* popover;
+
 
 @end
 
@@ -53,6 +55,9 @@
                                 green:(self.green)
                                  blue:(self.blue)
                                 alpha:self.opacity] ;
+    
+
+    
     
     [self.delegate didSelectSettings:self];
 }
@@ -155,15 +160,15 @@
 
 - (IBAction)CorrectMode:(id)sender
 {
-    if (self.mode == FALSE)
+    if (self.mode == NO)
     {
         [self.delegateBoard didBlockButtonsOnFigurePanel:self.mode];
-        self.mode = TRUE;
+        self.mode = YES;
     }
-    else if(self.mode == TRUE)
+    else if(self.mode == YES)
     {
         [self.delegateBoard didBlockButtonsOnFigurePanel:self.mode];
-        self.mode = FALSE;
+        self.mode = NO;
     }
     [self.delegate didSelectMode:self.mode];
 }

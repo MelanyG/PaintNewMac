@@ -85,7 +85,7 @@
 
 -(void) didBlockButtonsOnFigurePanel: (BOOL) mode
 {
-    if (mode == FALSE)
+    if (mode == NO)
     {
         self.Figure.lineButton.enabled = NO;
         self.Figure.triangleButton.enabled = NO;
@@ -97,7 +97,7 @@
         self.Figure.imageReview.enabled = NO;
    
     }
-    if (mode == TRUE)
+    if (mode == YES)
     {
         self.Figure.lineButton.enabled = YES;
         self.Figure.triangleButton.enabled = YES;
@@ -161,7 +161,7 @@
 {
     NSLog(@"BoardpanGesture" );
     
-    if(self.scrollOnScreen == 0)
+    if(self.scrollOnScreen == 1)
     {
        //CGPoint location = [panGesture locationInView:self.view];
         CGPoint location1 = [panGesture locationInView:self.Gallery.scrollView];

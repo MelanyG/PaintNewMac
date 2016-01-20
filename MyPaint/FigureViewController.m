@@ -20,14 +20,10 @@
 @implementation FigureViewController
 
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
 
 - (IBAction)backgroundButtonSellected:(UIButton *)sender
 {
-    if(self.scrollViewPressed == 0)
+    if(self.scrollViewPressed == NO)
     {
         self.lineButton.enabled = NO;
         self.triangleButton.enabled = NO;
@@ -37,7 +33,7 @@
         self.polygonButton.enabled = NO;
         self.pencilButton.enabled = NO;
         self.imageReview.enabled = NO;
-        self.scrollViewPressed = 1;
+        self.scrollViewPressed = YES;
     }
     else
     {
@@ -49,8 +45,10 @@
         self.polygonButton.enabled = YES;
         self.imageReview.enabled = YES;
         self.pencilButton.enabled = YES;
-        self.scrollViewPressed = 0;
+        self.scrollViewPressed = NO;
     }
+    
+    
     
     [self didBackgroundSelect:300.f];
     [self.delegate didDisableGestures];

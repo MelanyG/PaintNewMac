@@ -11,6 +11,8 @@
 
 @implementation SettingsForColor
 
+
+
 - (IBAction)closeSettings:(id)sender
 {
     [self.delegate closeSettings:self];
@@ -83,6 +85,9 @@
 {
     [super viewWillAppear:NO];
     // ensure the values displayed are the current values
+    
+    
+    
     
     self.red = 0.5;
     int redIntValue = self.red * 255.0;

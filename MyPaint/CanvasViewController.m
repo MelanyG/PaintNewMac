@@ -165,7 +165,7 @@
 -(void) didSelectMode: (BOOL) mode
 {
     self.mode = mode;
-    if(mode == FALSE )
+    if(mode == NO )
     {
         self.gestureTab.enabled = NO;
         self.pinchGesture.enabled = NO;
@@ -173,7 +173,7 @@
         self.rotationGesture.enabled = NO;
        
     }
-    else if(mode == TRUE )
+    else if(mode == YES )
     {
         self.gestureTab.enabled = YES;
         self.pinchGesture.enabled = YES;
@@ -414,7 +414,7 @@
 {
     if(self.scrollViewAppeared ==0)
     {
-        if(self.mode == FALSE)
+        if(self.mode == NO)
         {
             UITouch* touch = [[event allTouches] anyObject];
             self.start = [touch locationInView:self.view];
@@ -460,7 +460,7 @@
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if(self.mode == FALSE)
+    if(self.mode == NO)
     {
         if(self.tag==7)
         {
@@ -500,7 +500,7 @@
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    if(self.mode==FALSE)
+    if(self.mode==NO)
     {
         
         [super touchesEnded:touches withEvent:event];
@@ -518,7 +518,7 @@
 {
     if(self.scrollViewAppeared == 0)
     {
-        if(self.mode == FALSE)
+        if(self.mode == NO)
         {
             self.rect = nil;
             NSLog(@"touchesCancelled");
